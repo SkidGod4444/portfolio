@@ -2,11 +2,11 @@ import { Icons } from "@/components/icons";
 import { HomeIcon, NotebookIcon } from "lucide-react";
 
 export const DATA = {
-  name: "Saidev Dhal",
-  initials: "SDD",
-  url: "https://devwtf.in",
-  location: "Pune, India",
-  locationLink: "https://maps.app.goo.gl/MUbpyutE7bxrpdVW9",
+  name: "Dillion Verma",
+  initials: "DV",
+  url: "https://dillion.io",
+  location: "San Francisco, CA",
+  locationLink: "https://www.google.com/maps/place/sanfrancisco",
   description:
     "Software Engineer turned Entrepreneur. I love building things and helping people. Very active on Twitter.",
   summary:
