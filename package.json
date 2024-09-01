@@ -14,9 +14,13 @@
     "@radix-ui/react-separator": "^1.1.0",
     "@radix-ui/react-slot": "^1.1.0",
     "@radix-ui/react-tooltip": "^1.1.2",
+    "@types/express": "^4.17.21",
     "@types/mdx": "^2.0.13",
+    "axios": "^1.7.7",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "discord.js": "^14.15.3",
+    "express": "^4.19.2",
     "framer-motion": "^11.3.31",
     "gray-matter": "^4.0.3",
     "lucide-react": "^0.395.0",
@@ -32,7 +36,8 @@
     "shiki": "^1.15.1",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
-    "unified": "^11.0.5"
+    "unified": "^11.0.5",
+    "zlib-sync": "^0.1.9"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.15",

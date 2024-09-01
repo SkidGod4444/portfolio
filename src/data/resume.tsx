@@ -7,6 +7,8 @@ export const DATA = {
   url: "https://devwtf.in",
   location: "Pune, India",
   locationLink: "https://maps.app.goo.gl/MUbpyutE7bxrpdVW9",
+  timeZone: "Asia/Kolkata",
+  localCode: "en-IN",
   description:
     "18 years old Technophile, Software Developer, and a Computer Science Student.",
   summary:
