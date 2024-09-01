@@ -14,17 +14,10 @@ import Link from "next/link";
 import Markdown from "react-markdown";
 
 const BLUR_FADE_DELAY = 0.04;
-interface DiscordPresence {
-  status: string;
-  activity: string;
-}
+
 export default function Page() {
   const [hovering, setHovering] = useState(false);
   const [currentTime, setCurrentTime] = useState(new Date());
-  const [discordPresence, setDiscordPresence] = useState<DiscordPresence>({
-    status: 'offline',
-    activity: 'No activity',
-  });
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -46,7 +39,7 @@ export default function Page() {
                 delay={BLUR_FADE_DELAY}
                 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none"
                 yOffset={8}
-                text={`Hi, I'm ${DATA.name.split(" ")[0]} 👋`}
+                text={`Hi, I'm ${DATA.name.split(" ")[0]} 👻`}
               />
               <BlurFadeText
                 className="max-w-[600px] md:text-lg mt-2"
@@ -93,7 +86,18 @@ export default function Page() {
           </Markdown>
         </BlurFade>
       </section>
-      <section id="skills">
+      <section id="career">
+        <BlurFade delay={BLUR_FADE_DELAY * 3}>
+          <h2 className="text-xl font-bold">Career</h2>
+        </BlurFade>
+        <BlurFade delay={BLUR_FADE_DELAY * 4}>
+          <Markdown className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert">
+            {DATA.career}
+          </Markdown>
+        </BlurFade>
+      </section>
+
+      {/* <section id="skills">
         <div className="flex min-h-0 flex-col gap-y-3">
           <BlurFade delay={BLUR_FADE_DELAY * 9}>
             <h2 className="text-xl font-bold">Skills</h2>
@@ -154,7 +158,7 @@ export default function Page() {
             </BlurFade>
           ))}
         </div>
-      </section>
+      </section> */}
 
       <section id="projects">
         <div className="space-y-12 w-full py-12">
@@ -169,8 +173,12 @@ export default function Page() {
                 </h2>
                 <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                   I&apos;ve worked on a variety of cool shits, from simple
-                  websites, mobile apps to complex iot projects. Here are a few of my
-                  favorites.
+                  websites to mobile apps to complex iot projects. Here are a few of my
+                  favorites. You can find more on my{" "}
+                  <Link href="/projects" className="text-blue-500 hover:underline">
+                    projects page
+                  </Link>
+                  .
                 </p>
               </div>
             </div>
@@ -195,18 +203,9 @@ export default function Page() {
               </BlurFade>
             ))}
           </div>
-          <BlurFade delay={BLUR_FADE_DELAY * 11}>
-          <div className="flex h-full w-full items-center justify-center mb-10">
-            <Link href="/projects">
-            <span className="text-lg text-muted-foreground hover:underline cursor-pointer">
-              View more...
-            </span>
-            </Link>
-          </div>
-          </BlurFade>
         </div>
       </section>
-      <section id="hackathons">
+      {/* <section id="hackathons">
         <div className="space-y-12 w-full py-12">
           <BlurFade delay={BLUR_FADE_DELAY * 13}>
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
@@ -248,7 +247,7 @@ export default function Page() {
             </ul>
           </BlurFade>
         </div>
-      </section>
+      </section> */}
       <section id="contact">
         <div className="grid items-center justify-center gap-4 px-4 text-center md:px-6 w-full py-12">
           <BlurFade delay={BLUR_FADE_DELAY * 16}>

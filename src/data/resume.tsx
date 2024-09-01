@@ -10,9 +10,11 @@ export const DATA = {
   timeZone: "Asia/Kolkata",
   localCode: "en-IN",
   description:
-    "18 years old Technophile, Software Developer, and a Computer Science Student.",
+    "18-year-old tech enthusiast, indie hacker, and OSS contributor. I see school as the real TRAP and prefer a tight-knit, high-quality circle of skilled 🧠s.",
   summary:
-    "At the end of 2022, I quit my job as a software engineer to go fulltime into building and scaling my own SaaS businesses. In the past, [I pursued a double degree in computer science and business](/#education), [interned at big tech companies in Silicon Valley](https://www.youtube.com/watch?v=d-LJ2e5qKdE), and [competed in over 21 hackathons for fun](/#hackathons). I also had the pleasure of being a part of the first ever in-person cohort of buildspace called [buildspace sf1](https://buildspace.so/sf1).",
+    "I'm a super introvert nurtured in a small state [Odisha, India](https://maps.app.goo.gl/SFCDCshEyR96jmNUA), passionate about building impactful products that leverage technology to make a difference. I often share my work to [contribute](https://git.new/skidgod) to the community. In addition to my development work, I'm always exploring new ideas, particularly in areas like machine learning and robotics.",
+  career:
+    "I started as a self-taught developer at the age of 14, while I was in 8th grade and it's been a rollercoaster ride since then. Am aka [SkidGod](https://git.new/skidgod) on the internet. Won't you ask me what does it mean? [Click here to know](/about).",
   avatarUrl: "/me.jpg",
   skills: [
     "React",
@@ -25,8 +27,8 @@ export const DATA = {
   ],
   navbar: [
     { href: "/", icon: HomeIcon, label: "Home" },
-    { href: "/blog", icon: NotebookIcon, label: "Blog" },
     { href: "/projects", icon: DraftingCompass, label: "Projects" },
+    { href: "/blog", icon: NotebookIcon, label: "Blog" },
   ],
   contact: {
     email: "connect.saidev@gmail.com",
