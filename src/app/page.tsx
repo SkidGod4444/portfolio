@@ -195,6 +195,15 @@ export default function Page() {
               </BlurFade>
             ))}
           </div>
+          <BlurFade delay={BLUR_FADE_DELAY * 11}>
+          <div className="flex h-full w-full items-center justify-center mb-10">
+            <Link href="/projects">
+            <span className="text-lg text-muted-foreground hover:underline cursor-pointer">
+              View more...
+            </span>
+            </Link>
+          </div>
+          </BlurFade>
         </div>
       </section>
       <section id="hackathons">
