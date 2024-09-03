@@ -1,5 +1,41 @@
 import { Icons } from "@/components/icons";
-import { DraftingCompass, HomeIcon, NotebookIcon } from "lucide-react";
+import { DraftingCompass, HomeIcon, Newspaper, NotebookIcon, PersonStanding } from "lucide-react";
+
+export const navItems = [
+  {
+    link: "/",
+    icon: <HomeIcon className="h-4 w-4 text-neutral-500 dark:text-white" />,
+    name: "Home",
+  },
+  {
+    link: "/about",
+    icon: (
+      <PersonStanding className="h-4 w-4 text-neutral-500 dark:text-white" />
+    ),
+    name: "About",
+  },
+  {
+    link: "/projects",
+    icon: (
+      <DraftingCompass className="h-4 w-4 text-neutral-500 dark:text-white" />
+    ),
+    name: "Projects",
+  },
+  {
+    link: "/blog",
+    icon: (
+      <NotebookIcon className="h-4 w-4 text-neutral-500 dark:text-white" />
+    ),
+    name: "Blog",
+  },
+  {
+    link: "/#newsletter",
+    icon: (
+      <Newspaper className="h-4 w-4 text-neutral-500 dark:text-white" />
+    ),
+    name: "Newsletter",
+  },
+];
 
 export const DATA = {
   name: "Saidev Dhal",
@@ -10,7 +46,7 @@ export const DATA = {
   timeZone: "Asia/Kolkata",
   localCode: "en-IN",
   description:
-    "18-year-old tech enthusiast, indie hacker, and OSS contributor. I see school as the real TRAP and prefer a tight-knit, high-quality circle of skilled 🧠s.",
+    "18-year-old tech enthusiast, indie hacker, and OSS contributor.",
   summary:
     "I'm a super introvert nurtured in a small state [Odisha, India](https://maps.app.goo.gl/SFCDCshEyR96jmNUA), passionate about building impactful products that leverage technology to make a difference. I often share my work to [contribute](https://git.new/skidgod) to the community. In addition to my development work, I'm always exploring new ideas, particularly in areas like machine learning and robotics.",
   career:
@@ -24,11 +60,6 @@ export const DATA = {
     "Python",
     "Postgres",
     "Javascript",
-  ],
-  navbar: [
-    { href: "/", icon: HomeIcon, label: "Home" },
-    { href: "/projects", icon: DraftingCompass, label: "Projects" },
-    { href: "/blog", icon: NotebookIcon, label: "Blog" },
   ],
   contact: {
     email: "connect.saidev@gmail.com",
@@ -159,3 +190,4 @@ export const DATA = {
     },
   ],
 } as const;
+

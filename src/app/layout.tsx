@@ -1,11 +1,13 @@
-import Navbar from "@/components/navbar";
+
 import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { DATA } from "@/data/resume";
+import { DATA } from "@/data/config";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
 import "./globals.css";
+import { TopNavbar } from "@/components/top-navbar";
+import BottomNavbar from "@/components/bottom-navbar";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -63,8 +65,13 @@ export default function RootLayout({
       >
         <ThemeProvider attribute="class" defaultTheme="dark">
           <TooltipProvider delayDuration={0}>
+          <div className="hidden md:block">
+            <TopNavbar />
+          </div>
             {children}
-            <Navbar />
+            <div className="block md:hidden">
+              <BottomNavbar />
+            </div>
           </TooltipProvider>
         </ThemeProvider>
       </body>

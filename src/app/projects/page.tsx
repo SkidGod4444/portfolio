@@ -1,6 +1,6 @@
 import BlurFade from '@/components/magicui/blur-fade'
 import { ProjectCard } from '@/components/project-card';
-import { DATA } from '@/data/resume';
+import { DATA } from '@/data/config';
 import React from 'react'
 
 const BLUR_FADE_DELAY = 0.04;

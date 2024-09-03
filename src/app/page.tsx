@@ -8,16 +8,33 @@ import { ProjectCard } from "@/components/project-card";
 import { ResumeCard } from "@/components/resume-card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
-import { DATA } from "@/data/resume";
+import { DATA } from "@/data/config";
 import { AlarmClock, LocateFixed } from "lucide-react";
 import Link from "next/link";
 import Markdown from "react-markdown";
+import { PlaceholdersAndVanishInput } from "@/components/acternityui/vanish-input";
+import { Spotlight } from "@/components/acternityui/spotlight";
 
 const BLUR_FADE_DELAY = 0.04;
 
 export default function Page() {
   const [hovering, setHovering] = useState(false);
   const [currentTime, setCurrentTime] = useState(new Date());
+  const placeholders = [
+    "connect.saidev@gmail.com",
+    "Dive deeper into the world of tech and beyond. Hit subscribe!",
+    "Curious about everything? subscribe now!",
+    "Write a Javascript method to reverse a string",
+    "Discover the stories behind the code!",
+  ];
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.value);
+  };
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log("submitted");
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -31,6 +48,10 @@ export default function Page() {
 
   return (
     <main className="flex flex-col min-h-[100dvh] space-y-10">
+      <Spotlight
+        className="fixed -top-40 left-0 md:left-60 md:-top-20"
+        fill="white"
+      />
       <section id="hero">
         <div className="mx-auto w-full max-w-2xl space-y-8">
           <div className="gap-2 flex justify-between">
@@ -48,7 +69,7 @@ export default function Page() {
               />
               <BlurFade delay={BLUR_FADE_DELAY}>
                 <div className="flex flex-wrap gap-1 h-full w-full">
-                <Badge className="bg-muted-foreground dark:hover:bg-white hover:bg-black cursor-pointer">
+                  <Badge className="bg-muted-foreground dark:hover:bg-white hover:bg-black cursor-pointer">
                     <LocateFixed className="size-4 mr-1" />
                     {DATA.location}
                   </Badge>
@@ -56,9 +77,9 @@ export default function Page() {
                     <AlarmClock className="size-4 mr-1" />
                     {currentTime.toLocaleTimeString(DATA.localCode, {
                       timeZone: DATA.timeZone,
-                      hour: '2-digit',
-                      minute: '2-digit',
-                      second: '2-digit',
+                      hour: "2-digit",
+                      minute: "2-digit",
+                      second: "2-digit",
                       hour12: true,
                     })}
                   </Badge>
@@ -160,6 +181,52 @@ export default function Page() {
         </div>
       </section> */}
 
+      <section id="blogs">
+        <div className="space-y-12 w-full py-12">
+          <BlurFade delay={BLUR_FADE_DELAY * 11}>
+            <div className="flex flex-col items-center justify-center space-y-4 text-center">
+              <div className="space-y-2">
+                <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
+                  Latest Articles
+                </div>
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+                  My thoughts on ... everything
+                </h2>
+                <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                  I love writing about tech, programming, and life in general.
+                  I hope you will click on them by mistake.{" "}
+                  Here are a few of my latest articles. You can find more on my{" "}
+                  <Link href="/blog" className="text-blue-500 hover:underline">
+                    blog page
+                  </Link>
+                  .
+                </p>
+              </div>
+            </div>
+          </BlurFade>
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 max-w-[800px] mx-auto">
+            {DATA.projects.map((project, id) => (
+              <BlurFade
+                key={project.title}
+                delay={BLUR_FADE_DELAY * 12 + id * 0.05}
+              >
+                <ProjectCard
+                  href={project.href}
+                  key={project.title}
+                  title={project.title}
+                  description={project.description}
+                  dates={project.dates}
+                  tags={project.technologies}
+                  image={project.image}
+                  video={project.video}
+                  links={project.links}
+                />
+              </BlurFade>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section id="projects">
         <div className="space-y-12 w-full py-12">
           <BlurFade delay={BLUR_FADE_DELAY * 11}>
@@ -173,9 +240,12 @@ export default function Page() {
                 </h2>
                 <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                   I&apos;ve worked on a variety of cool shits, from simple
-                  websites to mobile apps to complex iot projects. Here are a few of my
-                  favorites. You can find more on my{" "}
-                  <Link href="/projects" className="text-blue-500 hover:underline">
+                  websites to mobile apps to complex iot projects. Here are a
+                  few of my favorites. You can find more on my{" "}
+                  <Link
+                    href="/projects"
+                    className="text-blue-500 hover:underline"
+                  >
                     projects page
                   </Link>
                   .
@@ -205,6 +275,7 @@ export default function Page() {
           </div>
         </div>
       </section>
+
       {/* <section id="hackathons">
         <div className="space-y-12 w-full py-12">
           <BlurFade delay={BLUR_FADE_DELAY * 13}>
@@ -248,27 +319,25 @@ export default function Page() {
           </BlurFade>
         </div>
       </section> */}
-      <section id="contact">
+      <section id="newsletter">
         <div className="grid items-center justify-center gap-4 px-4 text-center md:px-6 w-full py-12">
           <BlurFade delay={BLUR_FADE_DELAY * 16}>
             <div className="space-y-3">
               <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
-                Contact
+                Newsletter
               </div>
               <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                Get in Touch
+                No Bull shit talks
               </h2>
               <p className="mx-auto max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                Want to chat? Just shoot me a dm{" "}
-                <Link
-                  href={DATA.contact.social.X.url}
-                  className="text-blue-500 hover:underline"
-                >
-                  with a direct question on twitter
-                </Link>{" "}
-                and I&apos;ll respond whenever I can. I will ignore all
-                soliciting.
+                Want to follow my journey? Just subscribe to my newsletter
+                bellow and get the latest updates. I don&apos;t spam!
               </p>
+              <PlaceholdersAndVanishInput
+                placeholders={placeholders}
+                onChange={handleChange}
+                onSubmit={onSubmit}
+              />
             </div>
           </BlurFade>
         </div>
