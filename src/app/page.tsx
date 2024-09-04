@@ -1,23 +1,55 @@
 "use client";
 import { useState, useEffect } from "react";
 import { Lens } from "@/components/acternityui/lens";
-import { HackathonCard } from "@/components/hackathon-card";
 import BlurFade from "@/components/magicui/blur-fade";
 import BlurFadeText from "@/components/magicui/blur-fade-text";
 import { ProjectCard } from "@/components/project-card";
-import { ResumeCard } from "@/components/resume-card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
-import { DATA } from "@/data/config";
+import { DATA } from "@/data/config/site.config";
 import { AlarmClock, LocateFixed } from "lucide-react";
 import Link from "next/link";
 import Markdown from "react-markdown";
 import { PlaceholdersAndVanishInput } from "@/components/acternityui/vanish-input";
 import { Spotlight } from "@/components/acternityui/spotlight";
+import { PROJECTS } from "@/data/config/projects.config";
+import { BlogCard } from "@/components/blog-card";
 
 const BLUR_FADE_DELAY = 0.04;
 
+interface BlogsI {
+  slug: string;
+  metadata: {
+    title: string;
+    summary: string;
+    publishedAt: string;
+    icon: string;
+    featured: boolean;
+    readTime: string;
+  };
+}
 export default function Page() {
+  const [blogPosts, setBlogPosts] = useState<BlogsI[]>([]);
+
+  useEffect(() => {
+    const fetchBlogPosts = async () => {
+      try {
+        const response = await fetch('/api/blogs');
+        if (!response.ok) {
+          throw new Error('Failed to fetch blog posts');
+        }
+        const data = await response.json();
+        setBlogPosts(data);
+      } catch (error) {
+        console.error('Error fetching blog posts:', error);
+      }
+    };
+
+    if (blogPosts.length === 0) {
+      fetchBlogPosts();
+    }
+  }, [blogPosts.length]);
+  
   const [hovering, setHovering] = useState(false);
   const [currentTime, setCurrentTime] = useState(new Date());
   const placeholders = [
@@ -69,11 +101,11 @@ export default function Page() {
               />
               <BlurFade delay={BLUR_FADE_DELAY}>
                 <div className="flex flex-wrap gap-1 h-full w-full">
-                  <Badge className="bg-muted-foreground dark:hover:bg-white hover:bg-black cursor-pointer">
+                  <Badge variant="secondary" className=" dark:hover:bg-white hover:bg-black cursor-pointer">
                     <LocateFixed className="size-4 mr-1" />
                     {DATA.location}
                   </Badge>
-                  <Badge className="bg-muted-foreground dark:hover:bg-white hover:bg-black cursor-pointer">
+                  <Badge variant="secondary" className=" dark:hover:bg-white hover:bg-black cursor-pointer">
                     <AlarmClock className="size-4 mr-1" />
                     {currentTime.toLocaleTimeString(DATA.localCode, {
                       timeZone: DATA.timeZone,
@@ -97,13 +129,13 @@ export default function Page() {
           </div>
         </div>
       </section>
-      <section id="about">
+      <section id="bio">
         <BlurFade delay={BLUR_FADE_DELAY * 3}>
           <h2 className="text-xl font-bold">About</h2>
         </BlurFade>
         <BlurFade delay={BLUR_FADE_DELAY * 4}>
           <Markdown className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert">
-            {DATA.summary}
+            {DATA.bio}
           </Markdown>
         </BlurFade>
       </section>
@@ -117,69 +149,6 @@ export default function Page() {
           </Markdown>
         </BlurFade>
       </section>
-
-      {/* <section id="skills">
-        <div className="flex min-h-0 flex-col gap-y-3">
-          <BlurFade delay={BLUR_FADE_DELAY * 9}>
-            <h2 className="text-xl font-bold">Skills</h2>
-          </BlurFade>
-          <div className="flex flex-wrap gap-1">
-            {DATA.skills.map((skill, id) => (
-              <BlurFade key={skill} delay={BLUR_FADE_DELAY * 10 + id * 0.05}>
-                <Badge key={skill}>{skill}</Badge>
-              </BlurFade>
-            ))}
-          </div>
-        </div>
-      </section>
-      <section id="work">
-        <div className="flex min-h-0 flex-col gap-y-3">
-          <BlurFade delay={BLUR_FADE_DELAY * 5}>
-            <h2 className="text-xl font-bold">Work Experience</h2>
-          </BlurFade>
-          {DATA.work.map((work, id) => (
-            <BlurFade
-              key={work.company}
-              delay={BLUR_FADE_DELAY * 6 + id * 0.05}
-            >
-              <ResumeCard
-                key={work.company}
-                logoUrl={work.logoUrl}
-                altText={work.company}
-                title={work.company}
-                subtitle={work.title}
-                href={work.href}
-                badges={work.badges}
-                period={`${work.start} - ${work.end ?? "Present"}`}
-                description={work.description}
-              />
-            </BlurFade>
-          ))}
-        </div>
-      </section>
-      <section id="education">
-        <div className="flex min-h-0 flex-col gap-y-3">
-          <BlurFade delay={BLUR_FADE_DELAY * 7}>
-            <h2 className="text-xl font-bold">Education</h2>
-          </BlurFade>
-          {DATA.education.map((education, id) => (
-            <BlurFade
-              key={education.school}
-              delay={BLUR_FADE_DELAY * 8 + id * 0.05}
-            >
-              <ResumeCard
-                key={education.school}
-                href={education.href}
-                logoUrl={education.logoUrl}
-                altText={education.school}
-                title={education.school}
-                subtitle={education.degree}
-                period={`${education.start} - ${education.end}`}
-              />
-            </BlurFade>
-          ))}
-        </div>
-      </section> */}
 
       <section id="blogs">
         <div className="space-y-12 w-full py-12">
@@ -204,25 +173,29 @@ export default function Page() {
               </div>
             </div>
           </BlurFade>
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 max-w-[800px] mx-auto">
-            {DATA.projects.map((project, id) => (
-              <BlurFade
-                key={project.title}
-                delay={BLUR_FADE_DELAY * 12 + id * 0.05}
-              >
-                <ProjectCard
-                  href={project.href}
-                  key={project.title}
-                  title={project.title}
-                  description={project.description}
-                  dates={project.dates}
-                  tags={project.technologies}
-                  image={project.image}
-                  video={project.video}
-                  links={project.links}
-                />
+          <div className="flex flex-col gap-3 w-full">
+          <BlurFade delay={BLUR_FADE_DELAY * 14}>
+          <ul className="divide-y divide-dashed">
+            {blogPosts
+              .filter(post => post.metadata.featured)
+              .sort((a, b) => new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime())
+              .map((post, id) => (
+                <BlurFade
+                  key={post.slug}
+                  delay={BLUR_FADE_DELAY * 12 + id * 0.05}
+                >
+                    <BlogCard
+                      href={`/blog/${post.slug}`}
+                      title={post.metadata.title}
+                      description={post.metadata.summary}
+                      publishedAt={post.metadata.publishedAt}
+                      iconUrl={post.metadata.icon}
+                      readTime={post.metadata.readTime}
+                    />
+                </BlurFade>
+              ))}
+              </ul>
               </BlurFade>
-            ))}
           </div>
         </div>
       </section>
@@ -254,7 +227,7 @@ export default function Page() {
             </div>
           </BlurFade>
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 max-w-[800px] mx-auto">
-            {DATA.projects.map((project, id) => (
+            {PROJECTS.filter(project => project.featured).map((project, id) => (
               <BlurFade
                 key={project.title}
                 delay={BLUR_FADE_DELAY * 12 + id * 0.05}
@@ -276,49 +249,6 @@ export default function Page() {
         </div>
       </section>
 
-      {/* <section id="hackathons">
-        <div className="space-y-12 w-full py-12">
-          <BlurFade delay={BLUR_FADE_DELAY * 13}>
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
-                  Hackathons
-                </div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                  I like building things
-                </h2>
-                <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  During my time in university, I attended{" "}
-                  {DATA.hackathons.length}+ hackathons. People from around the
-                  country would come together and build incredible things in 2-3
-                  days. It was eye-opening to see the endless possibilities
-                  brought to life by a group of motivated and passionate
-                  individuals.
-                </p>
-              </div>
-            </div>
-          </BlurFade>
-          <BlurFade delay={BLUR_FADE_DELAY * 14}>
-            <ul className="mb-4 ml-4 divide-y divide-dashed border-l">
-              {DATA.hackathons.map((project, id) => (
-                <BlurFade
-                  key={project.title + project.dates}
-                  delay={BLUR_FADE_DELAY * 15 + id * 0.05}
-                >
-                  <HackathonCard
-                    title={project.title}
-                    description={project.description}
-                    location={project.location}
-                    dates={project.dates}
-                    image={project.image}
-                    links={project.links}
-                  />
-                </BlurFade>
-              ))}
-            </ul>
-          </BlurFade>
-        </div>
-      </section> */}
       <section id="newsletter">
         <div className="grid items-center justify-center gap-4 px-4 text-center md:px-6 w-full py-12">
           <BlurFade delay={BLUR_FADE_DELAY * 16}>

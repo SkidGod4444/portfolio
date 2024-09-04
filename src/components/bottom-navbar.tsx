@@ -7,7 +7,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { navItems } from "@/data/config";
+import { navItems } from "@/data/config/nav.config";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 

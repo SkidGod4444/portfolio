@@ -1,6 +1,6 @@
 import BlurFade from '@/components/magicui/blur-fade'
 import { ProjectCard } from '@/components/project-card';
-import { DATA } from '@/data/config';
+import { PROJECTS } from '@/data/config/projects.config';
 import React from 'react'
 
 const BLUR_FADE_DELAY = 0.04;
@@ -24,7 +24,7 @@ export default function Projects() {
             </div>
           </BlurFade>
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 max-w-[800px] mx-auto">
-            {DATA.projects.map((project, id) => (
+            {PROJECTS.map((project, id) => (
               <BlurFade
                 key={project.title}
                 delay={BLUR_FADE_DELAY * 12 + id * 0.05}

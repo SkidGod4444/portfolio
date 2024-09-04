@@ -1,13 +1,14 @@
 
 import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { DATA } from "@/data/config";
+import { DATA } from "@/data/config/site.config";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
 import "./globals.css";
 import { TopNavbar } from "@/components/top-navbar";
 import BottomNavbar from "@/components/bottom-navbar";
+import { ScheduleCallFloat } from "@/components/cal";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -72,6 +73,7 @@ export default function RootLayout({
             <div className="block md:hidden">
               <BottomNavbar />
             </div>
+            <ScheduleCallFloat/>
           </TooltipProvider>
         </ThemeProvider>
       </body>
