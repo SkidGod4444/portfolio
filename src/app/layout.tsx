@@ -22,10 +22,28 @@ export const metadata: Metadata = {
     template: `%s - ${DATA.name}`,
   },
   description: DATA.description,
+  keywords: [
+    "Saidev Dhal",
+    "SkidGod",
+    "Saidev Dhal Portfolio",
+    "Saidev Dhal Projects",
+    "Saidev Dhal Blogs",
+    "Saidev Dhal Resume",
+    "Saidev Dhal Contact",
+    "Saidev Dhal Instagram",
+    "Saidev Dhal Youtube",
+    "Saidev Dhal Email",
+    "Saidev Dhal LinkedIn",
+    "Saidev Dhal GitHub",
+    "Saidev Dhal Twitter",
+    "saidevdhal",
+    "skidgod",
+    "skidgod4444",
+  ],
   openGraph: {
     title: `${DATA.name}`,
     description: DATA.description,
-    url: DATA.url,
+    url: DATA.prevImage,
     siteName: `${DATA.name}`,
     locale: "en_US",
     type: "website",
@@ -44,10 +62,17 @@ export const metadata: Metadata = {
   twitter: {
     title: `${DATA.name}`,
     card: "summary_large_image",
-  },
-  verification: {
-    google: "",
-    yandex: "",
+    site: DATA.url,
+    creator: `${DATA.name}`,
+    description: DATA.description,
+    images: [
+      {
+        url: DATA.prevImage,
+        width: 1200,
+        height: 627,
+        alt: `${DATA.name}`,
+      },
+    ],
   },
 };
 

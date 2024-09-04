@@ -101,11 +101,11 @@ export default function Page() {
               />
               <BlurFade delay={BLUR_FADE_DELAY}>
                 <div className="flex flex-wrap gap-1 h-full w-full">
-                  <Badge variant="secondary" className=" dark:hover:bg-white hover:bg-black cursor-pointer">
+                  <Badge variant="secondary" className="cursor-pointer">
                     <LocateFixed className="size-4 mr-1" />
                     {DATA.location}
                   </Badge>
-                  <Badge variant="secondary" className=" dark:hover:bg-white hover:bg-black cursor-pointer">
+                  <Badge variant="secondary" className="cursor-pointer">
                     <AlarmClock className="size-4 mr-1" />
                     {currentTime.toLocaleTimeString(DATA.localCode, {
                       timeZone: DATA.timeZone,
