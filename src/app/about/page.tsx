@@ -1,35 +1,41 @@
-
-import BlurFade from '@/components/magicui/blur-fade';
-import BlurFadeText from '@/components/magicui/blur-fade-text';
-import { ResumeCard } from '@/components/resume-card';
-import { TimeLineCard } from '@/components/timeline-card';
-import { Badge } from '@/components/ui/badge';
-import { DATA } from '@/data/config/site.config';
-import { SKILLS } from '@/data/config/skills.config';
-import { WORK } from '@/data/config/work.config';
-import Image from 'next/image';
-import React from 'react'
-import Markdown from 'react-markdown';
+import BlurFade from "@/components/magicui/blur-fade";
+import BlurFadeText from "@/components/magicui/blur-fade-text";
+import { ResumeCard } from "@/components/resume-card";
+import { TimeLineCard } from "@/components/timeline-card";
+import { Badge } from "@/components/ui/badge";
+import { DATA } from "@/data/config/site.config";
+import { SKILLS } from "@/data/config/skills.config";
+import { WORK } from "@/data/config/work.config";
+import Image from "next/image";
+import React from "react";
+import Markdown from "react-markdown";
 
 const BLUR_FADE_DELAY = 0.04;
 
 export default function About() {
   return (
     <main className="flex flex-col min-h-[100dvh] space-y-10">
-      <section id='quote'>
-      <BlurFadeText
-                delay={BLUR_FADE_DELAY}
-                className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none"
-                yOffset={8}
-                text={`Fyi, I'm ${DATA.name} 🧠`}
-              />
-      <BlurFade delay={BLUR_FADE_DELAY * 2}>
-        <p className="text-lg text-muted-foreground mb-6">
-          Welcome to my little corner of the internet. I&apos;m thrilled you&apos;re here!
-        </p>
-      </BlurFade>
-      <BlurFade delay={BLUR_FADE_DELAY * 3}>
-          <Image src="/quote2.jpeg" alt='quote' width={1920} height={1080} className='rounded-xl w-full h-auto object-cover max-h-[300px]' />
+      <section id="quote">
+        <BlurFadeText
+          delay={BLUR_FADE_DELAY}
+          className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none"
+          yOffset={8}
+          text={`Fyi, I'm ${DATA.name} 🧠`}
+        />
+        <BlurFade delay={BLUR_FADE_DELAY * 2}>
+          <p className="text-lg text-muted-foreground mb-6">
+            Welcome to my little corner of the internet. I&apos;m thrilled
+            you&apos;re here!
+          </p>
+        </BlurFade>
+        <BlurFade delay={BLUR_FADE_DELAY * 3}>
+          <Image
+            src="/quote2.jpeg"
+            alt="quote"
+            width={1920}
+            height={1080}
+            className="rounded-xl w-full h-auto object-cover max-h-[300px]"
+          />
         </BlurFade>
       </section>
       <section id="about">
@@ -59,11 +65,18 @@ export default function About() {
           </BlurFade>
           <div className="flex flex-col gap-3">
             {SKILLS.map((skillCategory, id) => (
-              <BlurFade key={skillCategory.category} delay={BLUR_FADE_DELAY * 10 + id * 0.05}>
-                <p key={skillCategory.category} className='text-sm mb-1'>{skillCategory.category}</p>
+              <BlurFade
+                key={skillCategory.category}
+                delay={BLUR_FADE_DELAY * 10 + id * 0.05}
+              >
+                <p key={skillCategory.category} className="text-sm mb-1">
+                  {skillCategory.category}
+                </p>
                 <div className="flex flex-wrap gap-1">
                   {skillCategory.technologies.map((tech, techId) => (
-                    <Badge key={`${skillCategory.category}-${tech}`}>{tech}</Badge>
+                    <Badge key={`${skillCategory.category}-${tech}`}>
+                      {tech}
+                    </Badge>
                   ))}
                 </div>
               </BlurFade>
@@ -101,13 +114,13 @@ export default function About() {
             <h2 className="text-xl font-bold">Work Experience</h2>
           </BlurFade>
           <BlurFade delay={BLUR_FADE_DELAY * 14}>
-          <ul className="mb-4 ml-4 divide-y divide-dashed border-l">
-          {WORK.map((work, id) => (
-            <BlurFade
-              key={work.title + work.dates}
-              delay={BLUR_FADE_DELAY * 6 + id * 0.05}
-            >
-              <TimeLineCard
+            <ul className="mb-4 ml-4 divide-y divide-dashed border-l">
+              {WORK.map((work, id) => (
+                <BlurFade
+                  key={work.title + work.dates}
+                  delay={BLUR_FADE_DELAY * 6 + id * 0.05}
+                >
+                  <TimeLineCard
                     title={work.title}
                     role={work.role}
                     description={work.description}
@@ -116,9 +129,9 @@ export default function About() {
                     image={work.image}
                     links={work.links}
                   />
-            </BlurFade>
-          ))}
-          </ul>
+                </BlurFade>
+              ))}
+            </ul>
           </BlurFade>
         </div>
       </section>
@@ -133,5 +146,5 @@ export default function About() {
         </BlurFade>
       </section>
     </main>
-  )
+  );
 }

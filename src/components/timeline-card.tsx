@@ -38,7 +38,11 @@ export function TimeLineCard({
           <time className="text-xs text-muted-foreground">{dates}</time>
         )}
         <h2 className="font-semibold leading-none">{title}</h2>
-        {role && (<Badge variant="secondary" className="w-fit text-xs">{role}</Badge>)}
+        {role && (
+          <Badge variant="secondary" className="w-fit text-xs">
+            {role}
+          </Badge>
+        )}
         {location && (
           <p className="text-sm text-muted-foreground">{location}</p>
         )}

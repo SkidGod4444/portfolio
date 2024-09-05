@@ -25,29 +25,21 @@ export const BlogCard = ({
   description,
   iconUrl,
   readTime,
-  publishedAt
+  publishedAt,
 }: BlogCardProps) => {
-
   return (
-    <Link
-      href={href || "#"}
-      className="block cursor-pointer"
-    >
+    <Link href={href || "#"} className="block cursor-pointer">
       <Card className="flex bg-background py-4">
         <div className="flex-none">
           <Avatar className="size-12 m-auto rounded-lg bg-muted-foreground border-2">
-            <AvatarImage
-              src={iconUrl}
-              alt={title}
-              className="object-contain"
-            />
+            <AvatarImage src={iconUrl} alt={title} className="object-contain" />
             <AvatarFallback>{title[0]}</AvatarFallback>
           </Avatar>
         </div>
         <div className="flex-grow ml-4 items-center flex-col group">
           <CardHeader>
             <div className="flex items-center justify-between gap-x-2 text-base">
-              <h3 className="inline-flex items-center justify-center font-semibold leading-none text-xs sm:text-sm">
+              <h3 className="inline-flex items-center justify-center font-semibold leading-none md:text-base text-sm">
                 {title}
                 {badges && (
                   <span className="inline-flex gap-x-1 ml-auto">
@@ -64,7 +56,7 @@ export const BlogCard = ({
                 )}
                 <ChevronRightIcon
                   className={cn(
-                    "size-4 translate-x-0 transform opacity-0 transition-all duration-300 ease-out group-hover:translate-x-1 group-hover:opacity-100"
+                    "size-4 translate-x-0 transform opacity-0 transition-all duration-300 ease-out group-hover:translate-x-1 group-hover:opacity-100",
                   )}
                 />
               </h3>
@@ -72,8 +64,16 @@ export const BlogCard = ({
                 {readTime} read
               </div>
             </div>
-            {publishedAt && <div className="font-sans text-xs text-muted-foreground">{formatDate(publishedAt)}</div>}
-            {description && <div className="font-sans text-xs">{description}</div>}
+            {publishedAt && (
+              <div className="font-sans text-xs text-muted-foreground my-1">
+                {formatDate(publishedAt)}
+              </div>
+            )}
+            {description && (
+              <div className="font-sans text-xs md:text-sm mr-10">
+                {description}
+              </div>
+            )}
           </CardHeader>
         </div>
       </Card>

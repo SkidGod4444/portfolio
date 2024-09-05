@@ -24,10 +24,10 @@ export default function BottomNavbar() {
                   href={item.link}
                   className={cn(
                     buttonVariants({ variant: "ghost", size: "icon" }),
-                    "size-12"
+                    "size-12",
                   )}
                 >
-                 {item.icon}
+                  {item.icon}
                 </Link>
               </TooltipTrigger>
               <TooltipContent>

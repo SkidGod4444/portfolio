@@ -34,14 +34,14 @@ export default function Page() {
   useEffect(() => {
     const fetchBlogPosts = async () => {
       try {
-        const response = await fetch('/api/blogs');
+        const response = await fetch("/api/blogs");
         if (!response.ok) {
-          throw new Error('Failed to fetch blog posts');
+          throw new Error("Failed to fetch blog posts");
         }
         const data = await response.json();
         setBlogPosts(data);
       } catch (error) {
-        console.error('Error fetching blog posts:', error);
+        console.error("Error fetching blog posts:", error);
       }
     };
 
@@ -49,7 +49,7 @@ export default function Page() {
       fetchBlogPosts();
     }
   }, [blogPosts.length]);
-  
+
   const [hovering, setHovering] = useState(false);
   const [currentTime, setCurrentTime] = useState(new Date());
   const placeholders = [
@@ -162,9 +162,9 @@ export default function Page() {
                   My thoughts on ... everything
                 </h2>
                 <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  I love writing about tech, programming, and life in general.
-                  I hope you will click on them by mistake.{" "}
-                  Here are a few of my latest articles. You can find more on my{" "}
+                  I love writing about tech, programming, and life in general. I
+                  hope you will click on them by mistake. Here are a few of my
+                  latest articles. You can find more on my{" "}
                   <Link href="/blog" className="text-blue-500 hover:underline">
                     blog page
                   </Link>
@@ -174,28 +174,32 @@ export default function Page() {
             </div>
           </BlurFade>
           <div className="flex flex-col gap-3 w-full">
-          <BlurFade delay={BLUR_FADE_DELAY * 14}>
-          <ul className="divide-y divide-dashed">
-            {blogPosts
-              .filter(post => post.metadata.featured)
-              .sort((a, b) => new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime())
-              .map((post, id) => (
-                <BlurFade
-                  key={post.slug}
-                  delay={BLUR_FADE_DELAY * 12 + id * 0.05}
-                >
-                    <BlogCard
-                      href={`/blog/${post.slug}`}
-                      title={post.metadata.title}
-                      description={post.metadata.summary}
-                      publishedAt={post.metadata.publishedAt}
-                      iconUrl={post.metadata.icon}
-                      readTime={post.metadata.readTime}
-                    />
-                </BlurFade>
-              ))}
+            <BlurFade delay={BLUR_FADE_DELAY * 14}>
+              <ul className="divide-y divide-dashed">
+                {blogPosts
+                  .filter((post) => post.metadata.featured)
+                  .sort(
+                    (a, b) =>
+                      new Date(b.metadata.publishedAt).getTime() -
+                      new Date(a.metadata.publishedAt).getTime(),
+                  )
+                  .map((post, id) => (
+                    <BlurFade
+                      key={post.slug}
+                      delay={BLUR_FADE_DELAY * 12 + id * 0.05}
+                    >
+                      <BlogCard
+                        href={`/blog/${post.slug}`}
+                        title={post.metadata.title}
+                        description={post.metadata.summary}
+                        publishedAt={post.metadata.publishedAt}
+                        iconUrl={post.metadata.icon}
+                        readTime={post.metadata.readTime}
+                      />
+                    </BlurFade>
+                  ))}
               </ul>
-              </BlurFade>
+            </BlurFade>
           </div>
         </div>
       </section>
@@ -227,24 +231,26 @@ export default function Page() {
             </div>
           </BlurFade>
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 max-w-[800px] mx-auto">
-            {PROJECTS.filter(project => project.featured).map((project, id) => (
-              <BlurFade
-                key={project.title}
-                delay={BLUR_FADE_DELAY * 12 + id * 0.05}
-              >
-                <ProjectCard
-                  href={project.href}
+            {PROJECTS.filter((project) => project.featured).map(
+              (project, id) => (
+                <BlurFade
                   key={project.title}
-                  title={project.title}
-                  description={project.description}
-                  dates={project.dates}
-                  tags={project.technologies}
-                  image={project.image}
-                  video={project.video}
-                  links={project.links}
-                />
-              </BlurFade>
-            ))}
+                  delay={BLUR_FADE_DELAY * 12 + id * 0.05}
+                >
+                  <ProjectCard
+                    href={project.href}
+                    key={project.title}
+                    title={project.title}
+                    description={project.description}
+                    dates={project.dates}
+                    tags={project.technologies}
+                    image={project.image}
+                    video={project.video}
+                    links={project.links}
+                  />
+                </BlurFade>
+              ),
+            )}
           </div>
         </div>
       </section>

@@ -13,7 +13,10 @@ export function ScheduleCallFloat() {
       const cal = await getCalApi({ namespace: "saidevdhal" });
       cal("ui", {
         theme: theme === "dark" ? "dark" : "light",
-        cssVarsPerTheme: { dark: { "--brand-color": "#000000" }, light: { "--brand-color": "#ffffff" } },
+        cssVarsPerTheme: {
+          dark: { "--brand-color": "#000000" },
+          light: { "--brand-color": "#ffffff" },
+        },
         hideEventTypeDetails: false,
         layout: "month_view",
       });
@@ -27,7 +30,9 @@ export function ScheduleCallFloat() {
       className="group/cal fixed z-50 md:bottom-5 bottom-20 right-5 w-12 h-12 rounded-full hover:px-4 hover:w-auto p-2 duration-300 transition-all ease-out"
     >
       <div className="flex items-center gap-2">
-        <p className="group-hover/cal:block hidden duration-300 transition-all ease-out">Schedule Meeting</p>
+        <p className="group-hover/cal:block hidden duration-300 transition-all ease-out">
+          Schedule Meeting
+        </p>
         <CalendarDays strokeWidth={1} />
       </div>
     </Button>

@@ -1,4 +1,3 @@
-
 import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { DATA } from "@/data/config/site.config";
@@ -40,6 +39,13 @@ export const metadata: Metadata = {
     "skidgod",
     "skidgod4444",
   ],
+  authors: [
+    {
+      name: `${DATA.name}`,
+      url: DATA.url,
+    },
+  ],
+  creator: `${DATA.name}`,
   openGraph: {
     title: `${DATA.name}`,
     description: DATA.description,
@@ -86,19 +92,19 @@ export default function RootLayout({
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased max-w-2xl mx-auto py-12 sm:py-24 px-6",
-          fontSans.variable
+          fontSans.variable,
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="dark">
           <TooltipProvider delayDuration={0}>
-          <div className="hidden md:block">
-            <TopNavbar />
-          </div>
+            <div className="hidden md:block">
+              <TopNavbar />
+            </div>
             {children}
             <div className="block md:hidden">
               <BottomNavbar />
             </div>
-            <ScheduleCallFloat/>
+            <ScheduleCallFloat />
           </TooltipProvider>
         </ThemeProvider>
       </body>

@@ -8,4 +8,4 @@ export function TopNavbar() {
       <FloatingNav navItems={navItems} />
     </div>
   );
-};
+}
