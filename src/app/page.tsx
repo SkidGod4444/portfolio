@@ -7,13 +7,15 @@ import { ProjectCard } from "@/components/project-card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { DATA } from "@/data/config/site.config";
-import { AlarmClock, LocateFixed } from "lucide-react";
+import { AlarmClock, CircleArrowOutUpRight, LocateFixed, Paperclip, PartyPopper } from "lucide-react";
 import Link from "next/link";
 import Markdown from "react-markdown";
 import { PlaceholdersAndVanishInput } from "@/components/acternityui/vanish-input";
 import { Spotlight } from "@/components/acternityui/spotlight";
 import { PROJECTS } from "@/data/config/projects.config";
 import { BlogCard } from "@/components/blog-card";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { toast } from "sonner";
 
 const BLUR_FADE_DELAY = 0.04;
 
@@ -30,6 +32,9 @@ interface BlogsI {
 }
 export default function Page() {
   const [blogPosts, setBlogPosts] = useState<BlogsI[]>([]);
+  const [isNsl, setIsNsl] = useState(false);
+  const [isInputLoading, setIsInputLoading] = useState(false);
+  const [mail, setMail] = useState('');
 
   useEffect(() => {
     const fetchBlogPosts = async () => {
@@ -45,10 +50,25 @@ export default function Page() {
       }
     };
 
+    const checkNewsletterSubscription = () => {
+      if (typeof window !== 'undefined') {
+        const newsletterSubscription = localStorage.getItem('devwtf-nsl');
+        if (newsletterSubscription) {
+          setIsNsl(true);
+        } else {
+          setIsNsl(false);
+        }
+      }
+    };
+
+    if (!isNsl && blogPosts.length === 0){
+      checkNewsletterSubscription();
+    }
+
     if (blogPosts.length === 0) {
       fetchBlogPosts();
     }
-  }, [blogPosts.length]);
+  }, [blogPosts.length, isNsl]);
 
   const [hovering, setHovering] = useState(false);
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -61,11 +81,39 @@ export default function Page() {
   ];
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
+    setMail(e.target.value);
   };
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("submitted");
+    setIsInputLoading(true);
+    try {
+      const response = await fetch('/api/nsl', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: mail }),
+      });
+      
+      if (!response.ok) {
+        throw new Error('Subscription failed');
+      }
+      
+      const data = await response.json();
+      setIsInputLoading(false);
+      console.log('Subscription successful:', data);
+      // Show success toast
+      toast.success("Subscription successful, check your inbox!");
+      // Update local storage to indicate subscription
+      localStorage.setItem('devwtf-nsl', data.id);
+      // Update state to reflect subscription
+      setIsNsl(true);
+    } catch (error) {
+      setIsInputLoading(false);
+      console.error('Error subscribing:', error);
+      // Show error toast
+      toast.error("Subscription failed. Please try again.");
+    }
   };
 
   useEffect(() => {
@@ -115,6 +163,12 @@ export default function Page() {
                       hour12: true,
                     })}
                   </Badge>
+                  <Link href={DATA.resume}>
+                  <Badge variant="secondary" className="hidden md:flex cursor-pointer">
+                    <Paperclip className="size-4 mr-1" />
+                    Resume
+                  </Badge>
+                  </Link>
                 </div>
               </BlurFade>
             </div>
@@ -181,7 +235,7 @@ export default function Page() {
                   .sort(
                     (a, b) =>
                       new Date(b.metadata.publishedAt).getTime() -
-                      new Date(a.metadata.publishedAt).getTime(),
+                      new Date(a.metadata.publishedAt).getTime()
                   )
                   .map((post, id) => (
                     <BlurFade
@@ -249,7 +303,7 @@ export default function Page() {
                     links={project.links}
                   />
                 </BlurFade>
-              ),
+              )
             )}
           </div>
         </div>
@@ -269,11 +323,26 @@ export default function Page() {
                 Want to follow my journey? Just subscribe to my newsletter
                 bellow and get the latest updates. I don&apos;t spam!
               </p>
-              <PlaceholdersAndVanishInput
-                placeholders={placeholders}
-                onChange={handleChange}
-                onSubmit={onSubmit}
-              />
+              {!isNsl ? (
+                <PlaceholdersAndVanishInput
+                  type="email"
+                  placeholders={placeholders}
+                  onChange={handleChange}
+                  onSubmit={onSubmit}
+                  disabled={isInputLoading}
+                />
+              ) : (
+                <Alert className="rounded-full bg-background/80 backdrop-blur-sm">
+                  <AlertTitle>
+                    <Badge>
+                    Heads up!
+                    </Badge>
+                  </AlertTitle>
+                  <AlertDescription className="text-sm underline">
+                    You have already signed up for the newsletter.
+                  </AlertDescription>
+                </Alert>
+              )}
             </div>
           </BlurFade>
         </div>

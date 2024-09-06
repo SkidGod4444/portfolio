@@ -1,6 +1,6 @@
 import { Dock, DockIcon } from "@/components/magicui/dock";
 import { ModeToggle } from "@/components/mode-toggle";
-import { buttonVariants } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import {
   Tooltip,
@@ -8,7 +8,9 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { navItems } from "@/data/config/nav.config";
+import { DATA } from "@/data/config/site.config";
 import { cn } from "@/lib/utils";
+import { Paperclip } from "lucide-react";
 import Link from "next/link";
 
 export default function BottomNavbar() {
@@ -24,7 +26,7 @@ export default function BottomNavbar() {
                   href={item.link}
                   className={cn(
                     buttonVariants({ variant: "ghost", size: "icon" }),
-                    "size-12",
+                    "size-12"
                   )}
                 >
                   {item.icon}
@@ -36,33 +38,30 @@ export default function BottomNavbar() {
             </Tooltip>
           </DockIcon>
         ))}
-        {/* <Separator orientation="vertical" className="h-full" />
-        {Object.entries(DATA.contact.social)
-          .filter(([_, social]) => social.navbar)
-          .map(([name, social]) => (
-            <DockIcon key={name}>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Link
-                    href={social.url}
-                    className={cn(
-                      buttonVariants({ variant: "ghost", size: "icon" }),
-                      "size-12"
-                    )}
-                  >
-                    <social.icon className="size-4" />
-                  </Link>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>{name}</p>
-                </TooltipContent>
-              </Tooltip>
-            </DockIcon>
-          ))} */}
         <Separator orientation="vertical" className="h-full py-2" />
         <DockIcon>
           <Tooltip>
             <TooltipTrigger asChild>
+              <Link href={DATA.resume}>
+              <Button
+                variant="ghost"
+                type="button"
+                size="icon"
+                className="px-2"
+              >
+                <Paperclip />
+              </Button>
+              </Link>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>Resume</p>
+            </TooltipContent>
+          </Tooltip>
+        </DockIcon>
+
+        <DockIcon>
+          <Tooltip>
+            <TooltipTrigger>
               <ModeToggle />
             </TooltipTrigger>
             <TooltipContent>

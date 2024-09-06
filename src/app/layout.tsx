@@ -8,6 +8,8 @@ import "./globals.css";
 import { TopNavbar } from "@/components/top-navbar";
 import BottomNavbar from "@/components/bottom-navbar";
 import { ScheduleCallFloat } from "@/components/cal";
+import { Analytics } from "@vercel/analytics/react"
+import { Toaster } from "@/components/ui/sonner";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -49,7 +51,19 @@ export const metadata: Metadata = {
   openGraph: {
     title: `${DATA.name}`,
     description: DATA.description,
-    url: DATA.prevImage,
+    url: DATA.url,
+    images: [
+      {
+        url: DATA.prevImage,
+        width: 1200,
+        height: 630,
+      },
+      {
+        url: DATA.myImage,
+        width: 600,
+        height: 315,
+      },
+    ],
     siteName: `${DATA.name}`,
     locale: "en_US",
     type: "website",
@@ -75,7 +89,7 @@ export const metadata: Metadata = {
       {
         url: DATA.prevImage,
         width: 1200,
-        height: 627,
+        height: 630,
         alt: `${DATA.name}`,
       },
     ],
@@ -105,6 +119,8 @@ export default function RootLayout({
               <BottomNavbar />
             </div>
             <ScheduleCallFloat />
+            <Analytics/>
+            <Toaster />
           </TooltipProvider>
         </ThemeProvider>
       </body>
