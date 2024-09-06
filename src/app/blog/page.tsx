@@ -36,25 +36,32 @@ export default async function BlogPage() {
           <div className="flex flex-col gap-3 w-full">
             <BlurFade delay={BLUR_FADE_DELAY * 14}>
               <ul className="divide-y divide-dashed">
-                {BLOGS.sort(
-                  (a, b) =>
-                    new Date(b.metadata.publishedAt).getTime() -
-                    new Date(a.metadata.publishedAt).getTime(),
-                ).map((post, id) => (
-                  <BlurFade
-                    key={post.slug}
-                    delay={BLUR_FADE_DELAY * 12 + id * 0.05}
-                  >
-                    <BlogCard
-                      href={`/blog/${post.slug}`}
-                      title={post.metadata.title}
-                      description={post.metadata.summary}
-                      publishedAt={post.metadata.publishedAt}
-                      iconUrl={post.metadata.icon}
-                      readTime={post.metadata.readTime}
-                    />
-                  </BlurFade>
-                ))}
+                {BLOGS.sort((a, b) => {
+                  if (a && b && a.metadata && b.metadata) {
+                    return (
+                      new Date(b.metadata.publishedAt).getTime() -
+                      new Date(a.metadata.publishedAt).getTime()
+                    );
+                  }
+                  return 0;
+                }).map(
+                  (post, id) =>
+                    post && (
+                      <BlurFade
+                        key={post.slug}
+                        delay={BLUR_FADE_DELAY * 12 + id * 0.05}
+                      >
+                        <BlogCard
+                          href={`/blog/${post.slug}`}
+                          title={post.metadata.title}
+                          description={post.metadata.summary}
+                          publishedAt={post.metadata.publishedAt}
+                          iconUrl={post.metadata.icon}
+                          readTime={post.metadata.readTime}
+                        />
+                      </BlurFade>
+                    ),
+                )}
               </ul>
             </BlurFade>
           </div>

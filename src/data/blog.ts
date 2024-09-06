@@ -37,14 +37,14 @@ export async function getPost(slug: string) {
     const source = fs.readFileSync(filePath, "utf-8");
     const { content: rawContent, data: metadata } = matter(source);
     const content = await markdownToHTML(rawContent);
-    
+
     return {
       source: content,
       metadata,
       slug,
     };
   } catch (error: any) {
-    if (error.code === 'ENOENT') {
+    if (error.code === "ENOENT") {
       return false;
     } else {
       throw false;
