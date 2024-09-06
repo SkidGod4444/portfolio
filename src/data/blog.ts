@@ -31,14 +31,25 @@ export async function markdownToHTML(markdown: string) {
 
 export async function getPost(slug: string) {
   const filePath = path.join("content", `${slug}.mdx`);
-  let source = fs.readFileSync(filePath, "utf-8");
-  const { content: rawContent, data: metadata } = matter(source);
-  const content = await markdownToHTML(rawContent);
-  return {
-    source: content,
-    metadata,
-    slug,
-  };
+
+  try {
+    // Attempt to read the file
+    const source = fs.readFileSync(filePath, "utf-8");
+    const { content: rawContent, data: metadata } = matter(source);
+    const content = await markdownToHTML(rawContent);
+    
+    return {
+      source: content,
+      metadata,
+      slug,
+    };
+  } catch (error: any) {
+    if (error.code === 'ENOENT') {
+      return false;
+    } else {
+      throw false;
+    }
+  }
 }
 
 async function getAllPosts(dir: string) {
@@ -46,7 +57,11 @@ async function getAllPosts(dir: string) {
   return Promise.all(
     mdxFiles.map(async (file) => {
       let slug = path.basename(file, path.extname(file));
-      let { metadata, source } = await getPost(slug);
+      let result = await getPost(slug);
+      if (result === false) {
+        return null;
+      }
+      let { metadata, source } = result;
       return {
         metadata,
         slug,
