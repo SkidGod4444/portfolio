@@ -1,5 +1,5 @@
 <div align="center">
-<img alt="Portfolio" src="https://github.com/SkidGod4444/portfolio/public/prev.png" width="90%">
+<img alt="preview" src="https://github.com/SkidGod4444/portfolio/blob/main/public/prev.png" width="90%">
 </div>
 
 # Portfolio [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FSkidGod4444%2Fportfolio)
