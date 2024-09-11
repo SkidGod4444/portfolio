@@ -7,7 +7,13 @@ import { ProjectCard } from "@/components/project-card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { DATA } from "@/data/config/site.config";
-import { AlarmClock, CircleArrowOutUpRight, LocateFixed, Paperclip, PartyPopper } from "lucide-react";
+import {
+  AlarmClock,
+  CircleArrowOutUpRight,
+  LocateFixed,
+  Paperclip,
+  PartyPopper,
+} from "lucide-react";
 import Link from "next/link";
 import Markdown from "react-markdown";
 import { PlaceholdersAndVanishInput } from "@/components/acternityui/vanish-input";
@@ -16,7 +22,7 @@ import { PROJECTS } from "@/data/config/projects.config";
 import { BlogCard } from "@/components/blog-card";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { toast } from "sonner";
-
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 const BLUR_FADE_DELAY = 0.04;
 
 interface BlogsI {
@@ -34,7 +40,7 @@ export default function Page() {
   const [blogPosts, setBlogPosts] = useState<BlogsI[]>([]);
   const [isNsl, setIsNsl] = useState(false);
   const [isInputLoading, setIsInputLoading] = useState(false);
-  const [mail, setMail] = useState('');
+  const [mail, setMail] = useState("");
 
   useEffect(() => {
     const fetchBlogPosts = async () => {
@@ -51,8 +57,8 @@ export default function Page() {
     };
 
     const checkNewsletterSubscription = () => {
-      if (typeof window !== 'undefined') {
-        const newsletterSubscription = localStorage.getItem('devwtf-nsl');
+      if (typeof window !== "undefined") {
+        const newsletterSubscription = localStorage.getItem("devwtf-nsl");
         if (newsletterSubscription) {
           setIsNsl(true);
         } else {
@@ -61,7 +67,7 @@ export default function Page() {
       }
     };
 
-    if (!isNsl && blogPosts.length === 0){
+    if (!isNsl && blogPosts.length === 0) {
       checkNewsletterSubscription();
     }
 
@@ -87,30 +93,30 @@ export default function Page() {
     e.preventDefault();
     setIsInputLoading(true);
     try {
-      const response = await fetch('/api/nsl', {
-        method: 'POST',
+      const response = await fetch("/api/nsl", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ email: mail }),
       });
-      
+
       if (!response.ok) {
-        throw new Error('Subscription failed');
+        throw new Error("Subscription failed");
       }
-      
+
       const data = await response.json();
       setIsInputLoading(false);
-      console.log('Subscription successful:', data);
+      console.log("Subscription successful:", data);
       // Show success toast
       toast.success("Subscription successful, check your inbox!");
       // Update local storage to indicate subscription
-      localStorage.setItem('devwtf-nsl', data.id);
+      localStorage.setItem("devwtf-nsl", data.id);
       // Update state to reflect subscription
       setIsNsl(true);
     } catch (error) {
       setIsInputLoading(false);
-      console.error('Error subscribing:', error);
+      console.error("Error subscribing:", error);
       // Show error toast
       toast.error("Subscription failed. Please try again.");
     }
@@ -164,10 +170,13 @@ export default function Page() {
                     })}
                   </Badge>
                   <Link href={DATA.resume}>
-                  <Badge variant="secondary" className="hidden md:flex cursor-pointer">
-                    <Paperclip className="size-4 mr-1" />
-                    Resume
-                  </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="hidden md:flex cursor-pointer"
+                    >
+                      <Paperclip className="size-4 mr-1" />
+                      Resume
+                    </Badge>
                   </Link>
                 </div>
               </BlurFade>
@@ -263,49 +272,67 @@ export default function Page() {
           <BlurFade delay={BLUR_FADE_DELAY * 11}>
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
+                <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm mb-2">
                   Featured Projects
                 </div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                  Some of my cool shits
-                </h2>
-                <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  I&apos;ve worked on a variety of cool shits, from simple
-                  websites to mobile apps to complex iot projects. Here are a
-                  few of my favorites. You can find more on my{" "}
-                  <Link
-                    href="/projects"
-                    className="text-blue-500 hover:underline"
-                  >
-                    projects page
-                  </Link>
-                  .
-                </p>
+                <Tabs
+                  defaultValue="myworks"
+                  className="flex flex-col items-center justify-center w-full"
+                >
+                  <TabsList className="grid w-[400px] grid-cols-2">
+                    <TabsTrigger value="myworks">My Works</TabsTrigger>
+                    <TabsTrigger value="clientworks">Client Works</TabsTrigger>
+                  </TabsList>
+                  <TabsContent value="myworks">
+                    <BlurFade delay={BLUR_FADE_DELAY}>
+                      <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl mt-2">
+                        Some of my cool shits
+                      </h2>
+                      <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                        I&apos;ve worked on a variety of cool shits, from simple
+                        websites to mobile apps to complex iot projects. Here
+                        are a few of my favorites. You can find more on my{" "}
+                        <Link
+                          href="/projects"
+                          className="text-blue-500 hover:underline"
+                        >
+                          projects page
+                        </Link>
+                        .
+                      </p>
+                      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 max-w-[800px] mx-auto mt-16">
+                        {PROJECTS.filter((project) => project.featured).map(
+                          (project, id) => (
+                            <BlurFade
+                              key={project.title}
+                              delay={BLUR_FADE_DELAY * 12 + id * 0.05}
+                            >
+                              <ProjectCard
+                                href={project.href}
+                                key={project.title}
+                                title={project.title}
+                                description={project.description}
+                                dates={project.dates}
+                                tags={project.technologies}
+                                image={project.image}
+                                video={project.video}
+                                links={project.links}
+                              />
+                            </BlurFade>
+                          )
+                        )}
+                      </div>
+                    </BlurFade>
+                  </TabsContent>
+                  <TabsContent value="clientworks">
+                    {/* <BlurFade delay={BLUR_FADE_DELAY}>
+                      Coming soon...
+                    </BlurFade> */}
+                    </TabsContent>
+                </Tabs>
               </div>
             </div>
           </BlurFade>
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 max-w-[800px] mx-auto">
-            {PROJECTS.filter((project) => project.featured).map(
-              (project, id) => (
-                <BlurFade
-                  key={project.title}
-                  delay={BLUR_FADE_DELAY * 12 + id * 0.05}
-                >
-                  <ProjectCard
-                    href={project.href}
-                    key={project.title}
-                    title={project.title}
-                    description={project.description}
-                    dates={project.dates}
-                    tags={project.technologies}
-                    image={project.image}
-                    video={project.video}
-                    links={project.links}
-                  />
-                </BlurFade>
-              )
-            )}
-          </div>
         </div>
       </section>
 
@@ -323,6 +350,7 @@ export default function Page() {
                 Want to follow my journey? Just subscribe to my newsletter
                 bellow and get the latest updates. I don&apos;t spam!
               </p>
+              <div className="pt-10">
               {!isNsl ? (
                 <PlaceholdersAndVanishInput
                   type="email"
@@ -334,15 +362,14 @@ export default function Page() {
               ) : (
                 <Alert className="rounded-full bg-background/80 backdrop-blur-sm">
                   <AlertTitle>
-                    <Badge>
-                    Heads up!
-                    </Badge>
+                    <Badge>Heads up!</Badge>
                   </AlertTitle>
                   <AlertDescription className="text-sm underline">
                     You have already signed up for the newsletter.
                   </AlertDescription>
                 </Alert>
               )}
+              </div>
             </div>
           </BlurFade>
         </div>
