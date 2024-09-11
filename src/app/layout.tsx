@@ -54,11 +54,6 @@ export const metadata: Metadata = {
     url: DATA.url,
     images: [
       {
-        url: DATA.prevImage,
-        width: 1200,
-        height: 630,
-      },
-      {
         url: DATA.myImage,
         width: 600,
         height: 315,
