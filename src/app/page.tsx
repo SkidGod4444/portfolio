@@ -23,6 +23,8 @@ import { BlogCard } from "@/components/blog-card";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { toast } from "sonner";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { ClientWorksCard } from "@/components/client-works-card";
+import { CLIENTWORKS } from "@/data/config/clients.config";
 const BLUR_FADE_DELAY = 0.04;
 
 interface BlogsI {
@@ -268,70 +270,121 @@ export default function Page() {
       </section>
 
       <section id="projects">
-      <div className="flex flex-col items-center">
-      <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm mb-5">
+        <div className="flex flex-col items-center">
+          <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm mb-5">
             Featured Projects
           </div>
-      <BlurFade delay={BLUR_FADE_DELAY * 11}>
-      <Tabs defaultValue="myworks" className="flex flex-col items-center justify-center w-full">
-      <TabsList className="grid w-[400px] grid-cols-2 mb-4">
-        <TabsTrigger value="myworks">My Works</TabsTrigger>
-        <TabsTrigger value="clientworks">Client Works</TabsTrigger>
-      </TabsList>
-      <TabsContent value="myworks">
-      <BlurFade delay={BLUR_FADE_DELAY}>
-      <div className="space-y-12 w-full">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl mt-2">
-                    Some of my cool shits
-                  </h2>
-                  <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                    I&apos;ve worked on a variety of cool shits, from simple websites
-                    to mobile apps to complex IoT projects. Here are a few of my favorites.
-                    You can find more on my{" "}
-                    <Link
-                      href="/projects"
-                      className="text-blue-500 hover:underline"
-                    >
-                      projects page
-                    </Link>
-                    .
-                  </p>
-              </div>
-            </div>
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 max-w-[800px] mx-auto mt-8">
-                    {PROJECTS.filter((project) => project.featured).map(
-                      (project, id) => (
-                        <BlurFade
-                          key={project.title}
-                          delay={BLUR_FADE_DELAY * 12 + id * 0.05}
-                        >
-                          <ProjectCard
-                  href={project.href}
-                  active={project.active}
-                  archived={project.archived}
-                  key={project.title}
-                  title={project.title}
-                  description={project.description}
-                  dates={project.dates}
-                  tags={project.technologies}
-                  image={project.image}
-                  video={project.video}
-                  links={project.links}
-                />
-                        </BlurFade>
-                      )
-                    )}
+          <BlurFade delay={BLUR_FADE_DELAY * 11}>
+            <Tabs
+              defaultValue="myworks"
+              className="flex flex-col items-center justify-center w-full"
+            >
+              <TabsList className="grid w-[400px] grid-cols-2 mb-4">
+                <TabsTrigger value="myworks">My Works</TabsTrigger>
+                <TabsTrigger value="clientworks">Client Works</TabsTrigger>
+              </TabsList>
+              <TabsContent value="myworks">
+                <BlurFade delay={BLUR_FADE_DELAY}>
+                  <div className="space-y-12 w-full">
+                    <div className="flex flex-col items-center justify-center space-y-4 text-center">
+                      <div className="space-y-2">
+                        <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl mt-2">
+                          Some of my cool shits
+                        </h2>
+                        <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                          I&apos;ve worked on a variety of cool shits, from
+                          simple websites to mobile apps to complex IoT
+                          projects. Here are a few of my favorites. You can find
+                          more on my{" "}
+                          <Link
+                            href="/projects"
+                            className="text-blue-500 hover:underline"
+                          >
+                            projects page
+                          </Link>
+                          .
+                        </p>
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 max-w-[800px] mx-auto mt-8">
+                      {PROJECTS.filter((project) => project.featured).map(
+                        (project, id) => (
+                          <BlurFade
+                            key={project.title}
+                            delay={BLUR_FADE_DELAY * 12 + id * 0.05}
+                          >
+                            <ProjectCard
+                              href={project.href}
+                              active={project.active}
+                              archived={project.archived}
+                              key={project.title}
+                              title={project.title}
+                              description={project.description}
+                              dates={project.dates}
+                              tags={project.technologies}
+                              image={project.image}
+                              video={project.video}
+                              links={project.links}
+                            />
+                          </BlurFade>
+                        )
+                      )}
+                    </div>
                   </div>
+                </BlurFade>
+              </TabsContent>
+              <TabsContent value="clientworks">
+                <BlurFade delay={BLUR_FADE_DELAY}>
+                  <div className="space-y-12 w-full">
+                    <div className="flex flex-col items-center justify-center space-y-4 text-center">
+                      <div className="space-y-2">
+                        <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl mt-2">
+                          I do get hired, believe me
+                        </h2>
+                        <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                          I&apos;ve experience working on a range of client
+                          projects, from freelance assignments to corporate
+                          work. Feel free to explore more of my professional
+                          portfolio on my{" "}
+                          <Link
+                            href="/projects"
+                            className="text-blue-500 hover:underline"
+                          >
+                            projects page
+                          </Link>
+                          .
+                        </p>
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 max-w-[800px] mx-auto mt-8">
+                      {CLIENTWORKS.filter((project) => project.featured).map(
+                        (project, id) => (
+                          <BlurFade
+                            key={project.title}
+                            delay={BLUR_FADE_DELAY * 12 + id * 0.05}
+                          >
+                            <ClientWorksCard
+                              key={project.title}
+                              title={project.title}
+                              worktype={project.worktype}
+                              description={project.description}
+                              dates={project.dates}
+                              tags={project.technologies}
+                              image={project.image}
+                              video={project.video}
+                              fatures={project.features}
+                              testimonial={project.testimonial}
+                            />
+                          </BlurFade>
+                        )
+                      )}
+                    </div>
+                  </div>
+                </BlurFade>
+              </TabsContent>
+            </Tabs>
+          </BlurFade>
         </div>
-        </BlurFade>
-        </TabsContent>
-        <TabsContent value="clientworks">
-        </TabsContent>
-        </Tabs>
-        </BlurFade>
-      </div>
       </section>
 
       <section id="newsletter">
@@ -349,24 +402,24 @@ export default function Page() {
                 bellow and get the latest updates. I don&apos;t spam!
               </p>
               <div className="pt-10">
-              {!isNsl ? (
-                <PlaceholdersAndVanishInput
-                  type="email"
-                  placeholders={placeholders}
-                  onChange={handleChange}
-                  onSubmit={onSubmit}
-                  disabled={isInputLoading}
-                />
-              ) : (
-                <Alert className="rounded-full bg-background/80 backdrop-blur-sm">
-                  <AlertTitle>
-                    <Badge>Heads up!</Badge>
-                  </AlertTitle>
-                  <AlertDescription className="text-sm underline">
-                    You have already signed up for the newsletter.
-                  </AlertDescription>
-                </Alert>
-              )}
+                {!isNsl ? (
+                  <PlaceholdersAndVanishInput
+                    type="email"
+                    placeholders={placeholders}
+                    onChange={handleChange}
+                    onSubmit={onSubmit}
+                    disabled={isInputLoading}
+                  />
+                ) : (
+                  <Alert className="rounded-full bg-background/80 backdrop-blur-sm">
+                    <AlertTitle>
+                      <Badge>Heads up!</Badge>
+                    </AlertTitle>
+                    <AlertDescription className="text-sm underline">
+                      You have already signed up for the newsletter.
+                    </AlertDescription>
+                  </Alert>
+                )}
               </div>
             </div>
           </BlurFade>

@@ -8,6 +8,9 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs"
+import { ClientWorksCard } from "@/components/client-works-card";
+import { CLIENTWORKS } from "@/data/config/clients.config";
+import Link from "next/link";
 const BLUR_FADE_DELAY = 0.04;
 
 export default function Projects() {
@@ -60,7 +63,44 @@ export default function Projects() {
         </BlurFade>
         </TabsContent>
         <TabsContent value="clientworks">
-        </TabsContent>
+                <BlurFade delay={BLUR_FADE_DELAY}>
+                  <div className="space-y-12 w-full">
+                    <div className="flex flex-col items-center justify-center space-y-4 text-center">
+                      <div className="space-y-2">
+                        <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl mt-2">
+                          Your ideas & my skills
+                        </h2>
+                        <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                        These projects showcase my client work across various industries. If my skills align with your needs, let&apos;s connect.
+                        </p>
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 max-w-[800px] mx-auto mt-8">
+                      {CLIENTWORKS.filter((project) => project.featured).map(
+                        (project, id) => (
+                          <BlurFade
+                            key={project.title}
+                            delay={BLUR_FADE_DELAY * 12 + id * 0.05}
+                          >
+                            <ClientWorksCard
+                              key={project.title}
+                              title={project.title}
+                              worktype={project.worktype}
+                              description={project.description}
+                              dates={project.dates}
+                              tags={project.technologies}
+                              image={project.image}
+                              video={project.video}
+                              fatures={project.features}
+                              testimonial={project.testimonial}
+                            />
+                          </BlurFade>
+                        )
+                      )}
+                    </div>
+                  </div>
+                </BlurFade>
+              </TabsContent>
         </Tabs>
         </BlurFade>
       </section>
