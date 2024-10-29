@@ -9,10 +9,8 @@ import { Badge } from "@/components/ui/badge";
 import { DATA } from "@/data/config/site.config";
 import {
   AlarmClock,
-  CircleArrowOutUpRight,
   LocateFixed,
   Paperclip,
-  PartyPopper,
 } from "lucide-react";
 import Link from "next/link";
 import Markdown from "react-markdown";

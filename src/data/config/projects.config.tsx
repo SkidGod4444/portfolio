@@ -36,6 +36,38 @@ export const PROJECTS = [
     video: "",
   },
   {
+    title: "Profanity Validator - a SDK for profanity moderation",
+    href: "https://profanity.devwtf.in",
+    dates: "28th Oct 2024 - 29th Oct 2024",
+    featured: true,
+    description:
+      "If you run a web app with any kind of user generated content, it's your responsibility to keep things in order. That's a challenge if your users keep dropping F-bombs like confetti at a toddler's birthday party. That's what this SDK actually solves but with more moderation capabilities.",
+    technologies: [
+      "React",
+      "Next.js",
+      "Typescript",
+      "NodeJs",
+      "NPM",
+      "react-hook-forms",
+      "zod",
+      "Shadcn UI",
+    ],
+    links: [
+      {
+        type: "Website",
+        href: "https://profanity.devwtf.in",
+        icon: <Icons.globe className="size-3" />,
+      },
+      {
+        type: "Source",
+        href: "https://l.devwtf.in/profanity",
+        icon: <Icons.github className="size-3" />,
+      },
+    ],
+    image: "https://i.imgur.com/KCJmPOa.png",
+    video: "",
+  },
+  {
     title: "Acter - Ai to convert your ideas into UI",
     href: "https://acter.devwtf.in",
     // dates: "Mar 2024 - May 2024",

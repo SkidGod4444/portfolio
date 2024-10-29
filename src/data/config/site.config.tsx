@@ -12,7 +12,7 @@ export const DATA = {
   timeZone: "Asia/Kolkata",
   localCode: "en-IN",
   description:
-    "18-year-old tech enthusiast, indie hacker, entrepreneur and OSS contributor.",
+    "18-year-old tech enthusiast, indie hacker, entrepreneur and OSS builder.",
   about:
     "I'm a super introvert nurtured in a small state [Odisha, India](https://maps.app.goo.gl/SFCDCshEyR96jmNUA), passionate about building impactful products that leverage technology to make a difference. I often share my work to [contribute](https://git.new/skidgod) to the community. In addition to my development work, I'm always exploring new ideas, particularly in areas like machine learning and robotics.\n\n In my free time i play games, listen music also i love to read books of *self-help* genre. I'm a huge fan of Iron Man. He inspires me a lot.\n\nIt's a pleasure to meet you!",
   bio: "I'm a super introvert nurtured in a small state [Odisha, India](https://maps.app.goo.gl/SFCDCshEyR96jmNUA), passionate about building impactful products that leverage technology to make a difference. I often share my work to [contribute](https://git.new/skidgod) to the community. In addition to my development work, I'm always exploring new ideas, particularly in areas like machine learning and robotics.",
