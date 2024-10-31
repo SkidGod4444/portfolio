@@ -228,7 +228,7 @@ export default function Guestbook() {
                   height={55}
                   className="rounded-xl bg-muted"
                 />
-                <div className="flex-1 min-w-[450px] w-full">
+                <div className="flex-1 min-w-0 md:min-w-[450px] w-full">
                   <div className="flex items-center justify-between w-full">
                     <div className="flex items-center gap-1 w-full">
                       <span className="font-semibold truncate">
@@ -237,8 +237,8 @@ export default function Guestbook() {
                       <span className="text-muted-foreground text-sm truncate">
                         @{msg.user_email.slice(0, 8)}
                       </span>
-                      <span className="text-muted-foreground text-sm">•</span>
-                      <span className="text-muted-foreground text-sm">
+                      <span className="hidden md:block text-muted-foreground text-sm">•</span>
+                      <span className="hidden md:block text-muted-foreground text-sm">
                         {new Date(msg.created_at).toLocaleDateString()}
                       </span>
                     </div>
