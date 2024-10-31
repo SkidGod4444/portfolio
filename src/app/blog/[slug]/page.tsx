@@ -1,5 +1,10 @@
 import { Button } from "@/components/ui/button";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { getPost } from "@/data/blog";
 import { DATA } from "@/data/config/site.config";
 import { formatDate } from "@/lib/utils";
@@ -85,7 +90,6 @@ export default async function Blog({
 }) {
   const post = await getPost(params.slug);
 
-
   if (!post) {
     notFound(); // Trigger 404 page
   }
@@ -122,19 +126,23 @@ export default async function Blog({
             </p>
           </Suspense>
           <TooltipProvider>
-      <Tooltip>
-        <TooltipTrigger>
-        <Link href="/blog">
-        <Button size={"icon"} variant={"ghost"} className="hover:animate-pulse">
-          <ChevronLeft className="size-5" />
-        </Button>
-          </Link>
-        </TooltipTrigger>
-        <TooltipContent>
-          <p>Back to blogs</p>
-        </TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger>
+                <Link href="/blog">
+                  <Button
+                    size={"icon"}
+                    variant={"ghost"}
+                    className="hover:animate-pulse"
+                  >
+                    <ChevronLeft className="size-5" />
+                  </Button>
+                </Link>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Back to blogs</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
         </div>
         <h1 className="title font-bold md:text-5xl text-3xl tracking-tighter max-w-[650px]">
           {post.metadata.title}

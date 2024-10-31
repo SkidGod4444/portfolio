@@ -10,13 +10,19 @@ export async function POST(request: NextRequest) {
 
   const prop = {
     userGroup: "Newsletter",
-  }
+  };
 
   const resp: {
-    success: boolean,
-    id?: string,
-    message?: string
-  } = await loops.createContact(email, prop, { 'cm0r1c55a00ex0ll16l7zdmlw': true });
+    success: boolean;
+    id?: string;
+    message?: string;
+  } = await loops.createContact(email, prop, {
+    cm0r1c55a00ex0ll16l7zdmlw: true,
+  });
 
-  return NextResponse.json({ success: resp.success, id: resp.id, message: resp.message });
+  return NextResponse.json({
+    success: resp.success,
+    id: resp.id,
+    message: resp.message,
+  });
 }

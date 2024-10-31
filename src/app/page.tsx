@@ -7,11 +7,7 @@ import { ProjectCard } from "@/components/project-card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { DATA } from "@/data/config/site.config";
-import {
-  AlarmClock,
-  LocateFixed,
-  Paperclip,
-} from "lucide-react";
+import { AlarmClock, LocateFixed, HeartPulse } from "lucide-react";
 import Link from "next/link";
 import Markdown from "react-markdown";
 import { PlaceholdersAndVanishInput } from "@/components/acternityui/vanish-input";
@@ -155,12 +151,12 @@ export default function Page() {
               />
               <BlurFade delay={BLUR_FADE_DELAY}>
                 <div className="flex flex-wrap gap-1 h-full w-full">
-                  <Badge variant="secondary" className="cursor-pointer">
-                    <LocateFixed className="size-4 mr-1" />
+                  <Badge variant="outline" className="cursor-pointer group">
+                    <LocateFixed className="size-4 mr-1 group-hover:text-green-500" />
                     {DATA.location}
                   </Badge>
-                  <Badge variant="secondary" className="cursor-pointer">
-                    <AlarmClock className="size-4 mr-1" />
+                  <Badge variant="outline" className="cursor-pointer group">
+                    <AlarmClock className="size-4 mr-1 group-hover:text-blue-500" />
                     {currentTime.toLocaleTimeString(DATA.localCode, {
                       timeZone: DATA.timeZone,
                       hour: "2-digit",
@@ -169,13 +165,13 @@ export default function Page() {
                       hour12: true,
                     })}
                   </Badge>
-                  <Link href={DATA.resume}>
+                  <Link href={DATA.sponsore}>
                     <Badge
-                      variant="secondary"
-                      className="hidden md:flex cursor-pointer"
+                      variant="outline"
+                      className="hidden md:flex cursor-pointer group"
                     >
-                      <Paperclip className="size-4 mr-1" />
-                      Resume
+                      <HeartPulse className="size-4 mr-1 group-hover:text-red-500" />
+                      Sponsore
                     </Badge>
                   </Link>
                 </div>
@@ -244,7 +240,7 @@ export default function Page() {
                   .sort(
                     (a, b) =>
                       new Date(b.metadata.publishedAt).getTime() -
-                      new Date(a.metadata.publishedAt).getTime()
+                      new Date(a.metadata.publishedAt).getTime(),
                   )
                   .map((post, id) => (
                     <BlurFade
@@ -325,7 +321,7 @@ export default function Page() {
                               links={project.links}
                             />
                           </BlurFade>
-                        )
+                        ),
                       )}
                     </div>
                   </div>
@@ -374,7 +370,7 @@ export default function Page() {
                               testimonial={project.testimonial}
                             />
                           </BlurFade>
-                        )
+                        ),
                       )}
                     </div>
                   </div>

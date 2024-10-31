@@ -88,10 +88,7 @@ export default function CustomVideoDialog({
 
   return (
     <div className={cn("relative", className)}>
-      <div
-        className="cursor-pointer"
-        onClick={() => setIsVideoOpen(true)}
-      >
+      <div className="cursor-pointer" onClick={() => setIsVideoOpen(true)}>
         {children}
       </div>
       <AnimatePresence>
@@ -109,7 +106,7 @@ export default function CustomVideoDialog({
               className="relative w-full max-w-4xl aspect-video mx-4 md:mx-0"
               onClick={(e) => e.stopPropagation()}
             >
-              <motion.button 
+              <motion.button
                 className="absolute -top-16 right-0 text-white text-xl bg-neutral-900/50 ring-1 backdrop-blur-md rounded-full p-2 dark:bg-neutral-100/50 dark:text-black"
                 onClick={() => setIsVideoOpen(false)}
               >

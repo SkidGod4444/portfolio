@@ -86,8 +86,10 @@ export function ProjectCard({
         <div className="space-y-1">
           <CardTitle className="mt-1 text-base">{title}</CardTitle>
           {active ? (
-           <p className="font-sans text-xs text-green-500 animate-pulse">Developing... </p>
-          ):(
+            <p className="font-sans text-xs text-green-500 animate-pulse">
+              Developing...{" "}
+            </p>
+          ) : (
             <time className="font-sans text-xs">{dates}</time>
           )}
           <div className="hidden font-sans text-xs underline print:visible">
@@ -117,7 +119,7 @@ export function ProjectCard({
         {links && links.length > 0 && (
           <div className="flex flex-row flex-wrap items-start gap-1">
             {links?.map((link, idx) => (
-              <Link href={link?.href || ''} key={idx} target="_blank">
+              <Link href={link?.href || ""} key={idx} target="_blank">
                 <Badge key={idx} className={`flex gap-2 px-2 py-1 text-[10px]`}>
                   {link.icon}
                   {link.type}
@@ -127,11 +129,14 @@ export function ProjectCard({
           </div>
         )}
         {archived && (
-              <Badge variant="destructive" className="flex gap-2 px-2 py-1 text-[10px] ml-1">
-                <Icons.archive className="size-3" />
-                Archived
-              </Badge>
-            )}
+          <Badge
+            variant="destructive"
+            className="flex gap-2 px-2 py-1 text-[10px] ml-1"
+          >
+            <Icons.archive className="size-3" />
+            Archived
+          </Badge>
+        )}
       </CardFooter>
     </Card>
   );
