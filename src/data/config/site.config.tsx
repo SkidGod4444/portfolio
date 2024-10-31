@@ -3,8 +3,10 @@ import { Icons } from "@/components/icons";
 export const DATA = {
   name: "Saidev Dhal",
   initials: "SDD",
+  adminUserId: "ba7153c9-2262-4a89-9bc2-de924ef78afa",
   url: "https://saidevdhal.xyz",
   resume: "https://saidevdhal.xyz",
+  sponsore: "https://github.com/sponsors/SkidGod4444",
   prevImage: "https://i.imgur.com/zTtzvAu.png",
   myImage: "/me2.png",
   location: "Pune, India",

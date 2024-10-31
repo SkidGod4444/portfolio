@@ -165,11 +165,7 @@ export const PROJECTS = [
     archived: true,
     description:
       "A python code to scrap telegram group members data and adds them to another telegram group..",
-    technologies: [
-      "Scrapping",
-      "Telegram API",
-      "Python",
-    ],
+    technologies: ["Scrapping", "Telegram API", "Python"],
     links: [
       {
         type: "Source",
@@ -188,13 +184,7 @@ export const PROJECTS = [
     archived: true,
     description:
       "All in one python discord bot. Source code was migrated from Replit to Github later.",
-    technologies: [
-      "Discord.py",
-      "Discord API",
-      "Python",
-      "Replit",
-      "Json DB",
-    ],
+    technologies: ["Discord.py", "Discord API", "Python", "Replit", "Json DB"],
     links: [
       {
         type: "Source",

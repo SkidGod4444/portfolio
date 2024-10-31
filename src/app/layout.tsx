@@ -8,7 +8,7 @@ import "./globals.css";
 import { TopNavbar } from "@/components/top-navbar";
 import BottomNavbar from "@/components/bottom-navbar";
 import { ScheduleCallFloat } from "@/components/cal";
-import { Analytics } from "@vercel/analytics/react"
+import { Analytics } from "@vercel/analytics/react";
 import { Toaster } from "@/components/ui/sonner";
 
 const fontSans = FontSans({
@@ -112,7 +112,7 @@ export default function RootLayout({
               <BottomNavbar />
             </div>
             <ScheduleCallFloat />
-            <Analytics/>
+            <Analytics />
             <Toaster />
           </TooltipProvider>
         </ThemeProvider>

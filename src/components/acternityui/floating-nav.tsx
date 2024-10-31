@@ -10,6 +10,8 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { ModeToggle } from "../mode-toggle";
 import { Separator } from "../ui/separator";
+import LogOutBtn from "../logout.btn";
+import { useAuth } from "@/context/auth.context";
 
 export const FloatingNav = ({
   navItems,
@@ -22,6 +24,7 @@ export const FloatingNav = ({
   }[];
   className?: string;
 }) => {
+  const { user } = useAuth();
   const { scrollYProgress } = useScroll();
 
   const [visible, setVisible] = useState(false);
@@ -74,10 +77,7 @@ export const FloatingNav = ({
             <span className="hidden sm:block text-sm">{navItem.name}</span>
           </Link>
         ))}
-        {/* <button className="border text-sm font-medium relative border-neutral-200 dark:border-white/[0.2] text-black dark:text-white px-4 py-2 rounded-full">
-          <span>Feedback</span>
-          <span className="absolute inset-x-0 w-1/2 mx-auto -bottom-px bg-gradient-to-r from-transparent via-blue-500 to-transparent  h-px" />
-        </button> */}
+        {user && <LogOutBtn isLarge={true} />}
         <Separator orientation="vertical" className="h-full py-2" />
         <ModeToggle />
       </motion.div>

@@ -80,11 +80,19 @@ export function ClientWorksCard({
           </Markdown>
           {fatures && (
             <>
-              <h4 className="text-sm font-semibold mt-2 mb-1">Cool features:</h4>
+              <h4 className="text-sm font-semibold mt-2 mb-1">
+                Cool features:
+              </h4>
               <Markdown className="prose max-w-full text-pretty font-sans text-xs text-muted-foreground dark:prose-invert">
-                {`- ${fatures.split('.').filter(Boolean).map(feature => feature.trim()).join('\n- ')}`}
+                {`- ${fatures
+                  .split(".")
+                  .filter(Boolean)
+                  .map((feature) => feature.trim())
+                  .join("\n- ")}`}
               </Markdown>
-              <span className="text-pretty font-sans text-xs text-muted-foreground">and many more...</span>
+              <span className="text-pretty font-sans text-xs text-muted-foreground">
+                and many more...
+              </span>
             </>
           )}
         </div>
@@ -112,12 +120,14 @@ export function ClientWorksCard({
           </Badge>
         )}
         {testimonial && (
-          <CustomVideoDialog videoSrc={testimonial}
-          animationStyle="top-in-bottom-out">
+          <CustomVideoDialog
+            videoSrc={testimonial}
+            animationStyle="top-in-bottom-out"
+          >
             <Badge className="flex gap-2 px-2 py-1 text-[10px] ml-1 bg-blue-400 hover:bg-blue-500 cursor-pointer">
-            <Icons.video className="size-4" />
-            Testimonial
-          </Badge>
+              <Icons.video className="size-4" />
+              Testimonial
+            </Badge>
           </CustomVideoDialog>
         )}
       </CardFooter>
