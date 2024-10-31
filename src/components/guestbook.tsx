@@ -159,10 +159,10 @@ export default function Guestbook() {
 
   const handleSignIn = async (type: "google" | "github") => {
     try {
-      const origin =
-        process.env.NODE_ENV === "development"
-          ? "http://localhost:3000"
-          : "https://devwtf.in";
+      const origin = "https://devwtf.in";
+        // process.env.NODE_ENV === "development"
+        //   ? "http://localhost:3000"
+        //   : "https://devwtf.in";
 
       await supabase.auth.signInWithOAuth({
         provider: type,
