@@ -71,8 +71,8 @@ export const PROJECTS = [
     title: "Acter - Ai to convert your ideas into UI",
     href: "https://acter.devwtf.in",
     // dates: "Mar 2024 - May 2024",
-    featured: true,
-    active: true,
+    featured: false,
+    active: false,
     description:
       "Acter is an Ai tool which will help you to convert your ideas into great UI and it supports a huge number of popular UI libraries and frameworks which will make your work easier to modify any existing code from any library. And also you can generate your UI using a particular framework and UI library.",
     technologies: [

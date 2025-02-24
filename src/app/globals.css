@@ -3,187 +3,278 @@
 @tailwind utilities;
 
 @layer base {
-    :root {
-      --background: 0 0% 100%;
-      --foreground: 210 11.1% 3.53%;
+  :root {
+    /* Sunlight effect colors - exact matches */
+    --day: #fffdfa;
+    --evening: #fccc83;
+    --dusk: #db7a2a;
+    --night: #0f131c;
+    --dawn: #16132b;
+    --morning: #9fb3bf;
+    --light: var(--day);
+    --dark: var(--night);
+    --shadow: #1a1917;
+    --bounce-light: #f5d7a6;
+    --timing-fn: cubic-bezier(0.455, 0.190, 0.000, 0.985);
 
-      --card: 0 0% 100%;
-      --card-foreground: 210 11.1% 3.53%;
-
-      --popover: 0 0% 100%;
-      --popover-foreground: 210 11.1% 3.53%;
-
-      --primary: 0 0% 9%;
-      --primary-foreground: 0 0% 98%;
-
-      --secondary: 0 0% 96.1%;
-      --secondary-foreground: 0 0% 9%;
-
-      --muted: 0 0% 96.1%;
-      --muted-foreground: 0 0% 45.1%;
-
-      --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 9%;
-
-      --destructive: 0 84.2% 60.2%;
-      --destructive-foreground: 0 0% 98%;
-
-      --border: 0 0% 89.8%;
-      --input: 0 0% 89.8%;
-      --ring: 0 0% 3.9%;
-
-      --radius: 0.5rem;
-    }
-
-    .dark {
-      --background: 210 11.1% 3.53%;
-      --foreground: 0 0% 98%;
-
-      --card: 210 11.1% 3.53%;
-      --card-foreground: 0 0% 98%;
-
-      --popover: 210 11.1% 3.53%;
-      --popover-foreground: 0 0% 98%;
-
-      --primary: 0 0% 98%;
-      --primary-foreground: 0 0% 9%;
-
-      --secondary: 0 0% 14.9%;
-      --secondary-foreground: 0 0% 98%;
-
-      --muted: 0 0% 14.9%;
-      --muted-foreground: 0 0% 63.9%;
-
-      --accent: 0 0% 14.9%;
-      --accent-foreground: 0 0% 98%;
-
-      --destructive: 0 62.8% 30.6%;
-      --destructive-foreground: 0 0% 98%;
-
-      --border: 0 0% 14.9%;
-      --input: 0 0% 14.9%;
-      --ring: 0 0% 83.1%;
-    }
+    /* ShadCN System colors - using sunlight variables */
+    --background: var(--light);
+    --foreground: var(--dark);
+    
+    --card: var(--light);
+    --card-foreground: var(--dark);
+    
+    --popover: var(--light);
+    --popover-foreground: var(--dark);
+    
+    --primary: var(--dark);
+    --primary-foreground: var(--light);
+    
+    --secondary: var(--morning);
+    --secondary-foreground: var(--dark);
+    
+    --muted: var(--morning);
+    --muted-foreground: #71717a;
+    
+    --accent: var(--evening);
+    --accent-foreground: var(--dark);
+    
+    --destructive: #ef4444;
+    --destructive-foreground: var(--light);
+    
+    --border: var(--morning);
+    --input: var(--morning);
+    --ring: var(--dark);
+    
+    --radius: 0.5rem;
   }
 
-  @layer base {
-    * {
-      @apply border-border;
-    }
-    body {
-      @apply bg-background text-foreground;
-    }
-  }
+  .dark {
+    --light: var(--night);
+    --dark: var(--day);
+    --shadow: #030307;
+    --bounce-light: #1b293f;
 
-  h3 code {
-    @apply !text-lg md:!text-xl;
+    /* Update shadcn colors for dark mode */
+    --background: var(--light);
+    --foreground: var(--dark);
+    
+    --card: var(--light);
+    --card-foreground: var(--dark);
+    
+    --popover: var(--light);
+    --popover-foreground: var(--dark);
+    
+    --primary: var(--dark);
+    --primary-foreground: var(--light);
+    
+    --secondary: var(--dawn);
+    --secondary-foreground: var(--dark);
+    
+    --muted: var(--dawn);
+    --muted-foreground: #a1a1aa;
+    
+    --accent: var(--dusk);
+    --accent-foreground: var(--dark);
+    
+    --destructive: #7f1d1d;
+    --destructive-foreground: var(--dark);
+    
+    --border: var(--dawn);
+    --input: var(--dawn);
+    --ring: var(--dark);
   }
-  
-  pre {
-    @apply !px-0 rounded-lg overflow-x-auto py-4
-  }
-   
-  pre [data-line] {
-    @apply px-4
-  }
-
-  code {
-    @apply text-sm md:text-base !leading-loose;
-  }
-  
-  pre > code {
-    counter-reset: line;
-  }
-  
-  code[data-theme*=" "],
-  code[data-theme*=" "] span {
-    color: var(--shiki-light);
-    background-color: var(--shiki-light-bg);
-  }
-   
-  @media (prefers-color-scheme: dark) {
-    code[data-theme*=" "],
-    code[data-theme*=" "] span {
-      color: var(--shiki-dark);
-      background-color: var(--shiki-dark-bg);
-    }
-  }
-  
-  code[data-line-numbers] {
-    counter-reset: line;
-  }
-  
-  code[data-line-numbers] > [data-line]::before {
-    counter-increment: line;
-    content: counter(line);
-    @apply inline-block w-4 mr-4 text-right text-gray-500;
-  }
- 
-  code {
-    counter-reset: line;
-  }
- 
-  code > [data-line]::before {
-  counter-increment: line;
-  content: counter(line);
- 
-  /* Other styling */
-  display: inline-block;
-  width: 1rem;
-  margin-right: 2rem;
-  text-align: right;
-  color: gray;
-}
- 
-code[data-line-numbers-max-digits="2"] > [data-line]::before {
-  width: 2rem;
-}
- 
-code[data-line-numbers-max-digits="3"] > [data-line]::before {
-  width: 3rem;
 }
 
-::-moz-selection {
-  color: hsl(var(--background));
-  background: hsl(var(--foreground));
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    transition: background-color 1s var(--timing-fn);
+  }
 }
 
+/* Window and Sunlight Effects */
+#dappled-light {
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  position: fixed;
+  inset: 0;
+}
+
+#glow {
+  position: absolute;
+  background: linear-gradient(309deg, var(--bounce-light), var(--bounce-light) 20%, transparent);
+  transition: background 1.0s var(--timing-fn);
+  height: 100%;
+  width: 100%;
+  opacity: 0.5;
+}
+
+#glow-bounce {
+  content: "";
+  position: absolute;
+  background: linear-gradient(355deg, var(--bounce-light) 0%, transparent 30%, transparent 100%);
+  transition: background 1.0s var(--timing-fn);
+  opacity: 0.5;
+  height: 100%;
+  width: 100%;
+  bottom: 0;
+}
+
+.perspective {
+  position: absolute;
+  transition: transform 1.7s var(--timing-fn), opacity 4s ease;
+  top: -30vh;
+  right: 0;
+  width: 80vw;
+  height: 130vh;
+  opacity: 0.1;
+  background-blend-mode: darken;
+  transform-origin: top right;
+  transform-style: preserve-3d;
+  transform: matrix3d(0.7500, -0.0625, 0.0000, 0.0008,
+      0.0000, 1.0000, 0.0000, 0.0000,
+      0.0000, 0.0000, 1.0000, 0.0000,
+      0.0000, 0.0000, 0.0000, 1.0000);
+  will-change: transform, opacity;
+}
+
+.dark .perspective {
+  opacity: 0.3;
+  transform: matrix3d(0.8333, 0.0833, 0.0000, 0.0003,
+      0.0000, 1.0000, 0.0000, 0.0000,
+      0.0000, 0.0000, 1.0000, 0.0000,
+      0.0000, 0.0000, 0.0000, 1.0000);
+}
+
+/* Blinds Effect */
+#blinds {
+  position: relative;
+  width: 100%;
+}
+
+#blinds .shutter,
+#blinds .bar {
+  background-color: var(--shadow);
+}
+
+#blinds > .shutters {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 60px;
+  transition: gap 1.0s var(--timing-fn);
+}
+
+.dark #blinds > .shutters {
+  gap: 20px;
+}
+
+#blinds > .vertical {
+  top: 0;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.vertical > .bar {
+  width: 5px;
+  height: 100%;
+}
+
+.shutter {
+  width: 100%;
+  height: 40px;
+  transition: height 1.0s var(--timing-fn);
+}
+
+.dark .shutter {
+  height: 80px;
+}
+
+/* Progressive Blur Effect */
+#progressive-blur {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+#progressive-blur > div {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  inset: 0;
+  -webkit-backdrop-filter: blur(var(--blur-amount)); /* Added for Safari support */
+  backdrop-filter: blur(var(--blur-amount));
+  -webkit-mask-image: linear-gradient(252deg, transparent, transparent var(--stop1), black var(--stop2), black); /* Added for Chrome support */
+  mask-image: linear-gradient(252deg, transparent, transparent var(--stop1), black var(--stop2), black);
+}
+
+#progressive-blur > div:nth-child(1) {
+  --blur-amount: 6px;
+  --stop1: 0%;
+  --stop2: 0%;
+}
+
+#progressive-blur > div:nth-child(2) {
+  --blur-amount: 12px;
+  --stop1: 40%;
+  --stop2: 80%;
+}
+
+#progressive-blur > div:nth-child(3) {
+  --blur-amount: 48px;
+  --stop1: 40%;
+  --stop2: 70%;
+}
+
+#progressive-blur > div:nth-child(4) {
+  --blur-amount: 96px;
+  --stop1: 70%;
+  --stop2: 80%;
+}
+
+/* Optimized Leaves Animation */
+#leaves {
+  position: absolute;
+  background-size: cover;
+  background-repeat: no-repeat;
+  bottom: -20px;
+  right: -700px;
+  width: 1600px;
+  height: 1400px;
+  /* background-image: url("/leaves.png");
+  filter: url(#wind); */
+  animation: billow 8s ease-in-out infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+@keyframes billow {
+  0%, 100% {
+    transform: perspective(400px) rotateX(0deg) rotateY(0deg) scale(1);
+  }
+  25% {
+    transform: perspective(400px) rotateX(1deg) rotateY(2deg) scale(1.02);
+  }
+  50% {
+    transform: perspective(400px) rotateX(-4deg) rotateY(-2deg) scale(0.97);
+  }
+  75% {
+    transform: perspective(400px) rotateX(1deg) rotateY(-1deg) scale(1.04);
+  }
+}
+
+/* Selection styles */
 ::selection {
-  color: hsl(var(--background));
-  background: hsl(var(--foreground));
-}
-
-/* view transition api */
-::view-transition-group(root) {
-  animation-duration: 0.7s;
-  animation-timing-function: linear(
-    0 0%, 0.2342 12.49%, 0.4374 24.99%,
-    0.6093 37.49%, 0.6835 43.74%,
-    0.7499 49.99%, 0.8086 56.25%,
-    0.8593 62.5%, 0.9023 68.75%, 0.9375 75%,
-    0.9648 81.25%, 0.9844 87.5%,
-    0.9961 93.75%, 1 100%
-    );
-}
-
-::view-transition-new(root) {
-  mask: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><defs><filter id="blur"><feGaussianBlur stdDeviation="2"/></filter></defs><circle cx="0" cy="0" r="18" fill="white" filter="url(%23blur)"/></svg>') top left / 0 no-repeat;
-  -webkit-mask-origin: content-box;
-  mask-origin: content-box;
-  animation: scale 1s;
-  transform-origin: top left;
-}
-
-::view-transition-old(root),
-.dark::view-transition-old(root) {
-  animation: scale 1s;
-  transform-origin: top left;
-  z-index: -1;
-}
-
-@keyframes scale {
-  to {
-    -webkit-mask-size: 350vmax;
-    mask-size: 350vmax;
-  }
+  background: var(--foreground);
+  color: var(--background);
 }

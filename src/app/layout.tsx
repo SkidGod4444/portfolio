@@ -10,6 +10,7 @@ import BottomNavbar from "@/components/bottom-navbar";
 import { ScheduleCallFloat } from "@/components/cal";
 import { Analytics } from "@vercel/analytics/react";
 import { Toaster } from "@/components/ui/sonner";
+import SunlightBackground from "@/components/custom/sunlight-bg";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -102,7 +103,8 @@ export default function RootLayout({
           fontSans.variable,
         )}
       >
-        <ThemeProvider attribute="class" defaultTheme="dark">
+        <ThemeProvider attribute="class" defaultTheme="light" forcedTheme="light">
+        <SunlightBackground>
           <TooltipProvider delayDuration={0}>
             <div className="hidden md:block">
               <TopNavbar />
@@ -115,6 +117,7 @@ export default function RootLayout({
             <Analytics />
             <Toaster />
           </TooltipProvider>
+          </SunlightBackground>
         </ThemeProvider>
       </body>
     </html>
