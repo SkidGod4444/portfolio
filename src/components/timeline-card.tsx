@@ -27,7 +27,7 @@ export function TimeLineCard({
 }: Props) {
   return (
     <li className="relative ml-10 py-4">
-      <div className="absolute -left-16 top-2 flex items-center justify-center bg-background rounded-full">
+      <div className="absolute -left-16 top-1 flex items-center justify-center bg-background rounded-full">
         <Avatar className="border size-12 m-auto">
           <AvatarImage src={image} alt={title} className="object-contain" />
           <AvatarFallback>{title[0]}</AvatarFallback>
@@ -39,7 +39,7 @@ export function TimeLineCard({
         )}
         <h2 className="font-semibold leading-none">{title}</h2>
         {role && (
-          <Badge variant="secondary" className="w-fit text-xs">
+          <Badge className="w-fit text-xs">
             {role}
           </Badge>
         )}

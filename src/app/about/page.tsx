@@ -30,11 +30,11 @@ export default function About() {
         </BlurFade>
         <BlurFade delay={BLUR_FADE_DELAY * 3}>
           <Image
-            src="/quote.jpeg"
+            src="/banner.png"
             alt="quote"
             width={1920}
             height={1080}
-            className="rounded-xl w-full h-auto object-cover max-h-[300px]"
+            className="rounded-xl w-full h-auto object-cover max-h-[300px] shadow-lg"
           />
         </BlurFade>
       </section>

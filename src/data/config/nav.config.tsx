@@ -1,6 +1,7 @@
 import {
   DraftingCompass,
   HomeIcon,
+  Library,
   Newspaper,
   NotebookIcon,
   PersonStanding,
@@ -18,6 +19,13 @@ export const navItems = [
       <PersonStanding className="h-4 w-4 text-neutral-500 dark:text-white" />
     ),
     name: "About",
+  },
+  {
+    link: "https://shelf.devwtf.in/",
+    icon: (
+      <Library className="h-4 w-4 text-neutral-500 dark:text-white" />
+    ),
+    name: "Shelf",
   },
   {
     link: "/projects",

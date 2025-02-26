@@ -84,6 +84,15 @@ export const DATA = {
 
   education: [
     {
+      school: "Dr.D.Y.Patil College of Arts, Commerce and Science",
+      location: "Akurdi, Pune, India",
+      href: "https://www.dypcoeakurdi.ac.in",
+      degree: "11th and 12th Grade with Computer Science",
+      logoUrl: "/dpu.png",
+      start: "2023",
+      end: "2025",
+    },
+    {
       school: "Buildspace",
       location: "Remote, San Francisco",
       href: "https://buildspace.so",
@@ -93,17 +102,8 @@ export const DATA = {
       end: "2024",
     },
     {
-      school: "Dr.D.Y.Patil College of Arts, Commerce and Science",
-      location: "Pune, India",
-      href: "https://www.dypcoeakurdi.ac.in",
-      degree: "11th and 12th Grade with Computer Science",
-      logoUrl: "/dpu.png",
-      start: "2023",
-      end: "2025",
-    },
-    {
       school: "NRI international School",
-      location: "Odisha, India",
+      location: "Bhadrak, Odisha, India",
       href: "https://g.co/kgs/WA4rWNS",
       degree: "9th and 10th Schooling ",
       logoUrl: "/nri.png",

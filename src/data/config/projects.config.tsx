@@ -70,7 +70,7 @@ export const PROJECTS = [
   {
     title: "Acter - Ai to convert your ideas into UI",
     href: "https://acter.devwtf.in",
-    // dates: "Mar 2024 - May 2024",
+    dates: "Mar 2024 - May 2024",
     featured: false,
     active: false,
     description:
@@ -155,6 +155,35 @@ export const PROJECTS = [
       },
     ],
     image: "https://i.imgur.com/1zeZewW.png",
+    video: "",
+  },
+  {
+    title: "Shelf - My Own Library",
+    href: "https://freelance-price-calculator.devwtf.in/",
+    dates: "Feb 2025 - Feb 2025",
+    featured: false,
+    description:
+      "I read books and papers every month around various topics and here are some of them that I recommend. ",
+    technologies: [
+      "Next.js",
+      "Typescript",
+      "React",
+      "TailwindCSS",
+      "Shadcn UI",
+    ],
+    links: [
+      {
+        type: "Website",
+        href: "https://shelf.devwtf.in/",
+        icon: <Icons.globe className="size-3" />,
+      },
+      {
+        type: "Source",
+        href: "https://github.com/SkidGod4444/shelf",
+        icon: <Icons.github className="size-3" />,
+      },
+    ],
+    image: "/assets/projects/shelf.png",
     video: "",
   },
   {

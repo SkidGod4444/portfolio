@@ -106,7 +106,7 @@ export function ProjectCard({
             {tags?.map((tag) => (
               <Badge
                 className="px-1 py-0 text-[10px]"
-                variant="secondary"
+                // variant="secondary"
                 key={tag}
               >
                 {tag}
@@ -130,8 +130,8 @@ export function ProjectCard({
         )}
         {archived && (
           <Badge
-            variant="destructive"
-            className="flex gap-2 px-2 py-1 text-[10px] ml-1"
+            // variant="destructive"
+            className="flex gap-2 px-2 py-1 text-[10px] ml-1 bg-red-600 hover:bg-red-700"
           >
             <Icons.archive className="size-3" />
             Archived
