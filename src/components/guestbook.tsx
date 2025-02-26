@@ -219,7 +219,7 @@ export default function Guestbook() {
       <div className="space-y-4 mb-24">
         {messages.map((msg, i) => (
           <BlurFade delay={i * 0.2} key={msg.id}>
-            <div className="bg-card border rounded-xl p-4 w-full hover:bg-muted/50 transition-colors shadow-sm">
+            <div className="bg-card dark:border-white/[0.2] dark:bg-transparent backdrop-blur-lg shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] rounded-xl p-4 w-full hover:bg-muted/50 transition-colors">
               <div className="flex items-start justify-start gap-3 w-full">
                 <Image
                   src={msg.user_image}
