@@ -66,7 +66,7 @@ export default function BottomNavbar() {
 
         <DockIcon>
           <Tooltip>
-            <TooltipTrigger>
+          <TooltipTrigger asChild>
               <ModeToggle />
             </TooltipTrigger>
             <TooltipContent>
