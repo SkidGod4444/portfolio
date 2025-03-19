@@ -135,6 +135,30 @@ export default function About() {
           </BlurFade>
         </div>
       </section>
+      <section id="others">
+        <div className="flex min-h-0 flex-col gap-y-3">
+          <BlurFade delay={BLUR_FADE_DELAY * 7}>
+            <h2 className="text-xl font-bold">Other Experiences</h2>
+          </BlurFade>
+          {DATA.othersexp.map((others, id) => (
+            <BlurFade
+              key={others.school}
+              delay={BLUR_FADE_DELAY * 8 + id * 0.05}
+            >
+              <ResumeCard
+                key={others.school}
+                href={others.href}
+                logoUrl={others.logoUrl}
+                altText={others.school}
+                title={others.school}
+                location={others.location}
+                subtitle={others.degree}
+                period={`${others.start} - ${others.end}`}
+              />
+            </BlurFade>
+          ))}
+        </div>
+      </section>
       <section id="connect">
         <BlurFade delay={BLUR_FADE_DELAY * 3}>
           <h2 className="text-xl font-bold">Hook with me</h2>

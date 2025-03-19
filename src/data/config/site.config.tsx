@@ -93,15 +93,6 @@ export const DATA = {
       end: "2025",
     },
     {
-      school: "Buildspace",
-      location: "Remote, San Francisco",
-      href: "https://buildspace.so",
-      degree: "s5 nights & weekends",
-      logoUrl: "/buildspace.jpg",
-      start: "2024",
-      end: "2024",
-    },
-    {
       school: "NRI international School",
       location: "Bhadrak, Odisha, India",
       href: "https://g.co/kgs/WA4rWNS",
@@ -111,17 +102,15 @@ export const DATA = {
       end: "2023",
     },
   ],
-  hackathons: [
+  othersexp: [
     {
-      title: "Hack Western 5",
-      dates: "November 23rd - 25th, 2018",
-      location: "London, Ontario",
-      description:
-        "Developed a mobile application which delivered bedtime stories to children using augmented reality.",
-      image:
-        "https://pub-83c5db439b40468498f97946200806f7.r2.dev/hackline/hack-western.png",
-      mlh: "https://s3.amazonaws.com/logged-assets/trust-badge/2019/mlh-trust-badge-2019-white.svg",
-      links: [],
+      school: "Buildspace S5",
+      location: "Remote, San Francisco",
+      href: "https://buildspace.so",
+      degree: "s5 nights & weekends",
+      logoUrl: "/buildspace.jpg",
+      start: "2024",
+      end: "2024",
     },
   ],
 } as const;

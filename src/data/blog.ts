@@ -6,6 +6,7 @@ import rehypeStringify from "rehype-stringify";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
 import { unified } from "unified";
+import { externalBlogs } from "./config/blog.config";
 
 function getMDXFiles(dir: string) {
   return fs.readdirSync(dir).filter((file) => path.extname(file) === ".mdx");
@@ -72,5 +73,9 @@ async function getAllPosts(dir: string) {
 }
 
 export async function getBlogPosts() {
-  return getAllPosts(path.join(process.cwd(), "content"));
+
+  const fetchedPosts = await getAllPosts(path.join(process.cwd(), "content"));
+  const validFetchedPosts = fetchedPosts.filter((post) => post !== null);
+
+  return [...externalBlogs, ...validFetchedPosts];
 }

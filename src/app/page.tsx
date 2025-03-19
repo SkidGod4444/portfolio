@@ -30,6 +30,7 @@ interface BlogsI {
     icon: string;
     featured: boolean;
     readTime: string;
+    custom?: boolean;
   };
 }
 export default function Page() {
@@ -248,7 +249,7 @@ export default function Page() {
                       delay={BLUR_FADE_DELAY * 12 + id * 0.05}
                     >
                       <BlogCard
-                        href={`/blog/${post.slug}`}
+                        href={post.metadata.custom ? `${post.slug}` : `/blog/${post.slug}`}
                         title={post.metadata.title}
                         description={post.metadata.summary}
                         publishedAt={post.metadata.publishedAt}

@@ -1,7 +1,6 @@
 import { BlogCard } from "@/components/blog-card";
 import BlurFade from "@/components/magicui/blur-fade";
 import { getBlogPosts } from "@/data/blog";
-import Link from "next/link";
 
 export const metadata = {
   title: "Blog",
@@ -49,7 +48,7 @@ export default async function BlogPage() {
                         delay={BLUR_FADE_DELAY * 12 + id * 0.05}
                       >
                         <BlogCard
-                          href={`/blog/${post.slug}`}
+                          href={post.metadata.custom ? `${post.slug}` : `/blog/${post.slug}`}
                           title={post.metadata.title}
                           description={post.metadata.summary}
                           publishedAt={post.metadata.publishedAt}
