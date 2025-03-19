@@ -59,7 +59,7 @@ export default function BottomNavbar() {
               </Link>
             </TooltipTrigger>
             <TooltipContent>
-              <p>Sponsore</p>
+              <p>Sponsor</p>
             </TooltipContent>
           </Tooltip>
         </DockIcon>
