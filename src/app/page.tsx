@@ -172,7 +172,7 @@ export default function Page() {
                       className="flex cursor-pointer group"
                     >
                       <HeartPulse className="size-4 mr-1 group-hover:text-red-500" />
-                      Sponsore
+                      Sponsor
                     </Badge>
                   </Link>
                 </div>

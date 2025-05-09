@@ -1,11 +1,11 @@
-import { ExternalLink, Link } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 
 export const WORK = [
   {
-    title: "NextCarbon - Indian Institute of Technology Madras",
-    role: "Product Manager Intern",
+    title: "Indian Institute of Technology Madras",
+    role: "Tech Lead Intern",
     dates: "Mar - Present, 2025",
-    location: "Remote, Madras (India)",
+    location: "Remote, CNDE Lab Madras (India)",
     description:
       "I’m leading product development and strategy for cutting-edge tech initiatives. I work closely with engineering team & professor to build this MVP.",
     image: "/iitm.png",
